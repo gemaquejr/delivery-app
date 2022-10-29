@@ -25,7 +25,7 @@ function Login() {
   const enableLoginButton = (userEmail, userPassword) => {
     const emailTest = EMAIL_REGEX.test(userEmail);
 
-    if (emailTest && userPassword.length > MIN_PASSWORD_LENGTH) {
+    if (emailTest && userPassword.length >= MIN_PASSWORD_LENGTH) {
       setDisabled(false);
     } else {
       setDisabled(true);

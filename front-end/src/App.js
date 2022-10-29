@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes as Switch, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import './App.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
           path="/"
           element={ <Navigate to="/Login" replace /> }
         />
+        <Route path="/register" element={ <Register /> } />
       </Switch>
     </div>
   );

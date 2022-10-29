@@ -9,8 +9,11 @@ const login = async ({ email, password }) => {
     const { data } = await instance.post('/login', { email, password });
 
     return data;
-  } catch (error) {
-    return error;
+  } catch (err) {
+    // console.log(err.response.data.message);
+    return {
+      message: err.response.data.message,
+    };
   }
 };
 

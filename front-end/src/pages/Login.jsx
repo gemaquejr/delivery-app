@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import { setLoggedUser } from '../redux/reducers/loginSlice';
+import login from '../services/loginAPI';
 
 function Login() {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -13,8 +14,11 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // const { password } = useSelector((state) => state.loginSlice);
+  // teste login
+  // fulana@deliveryapp.com - fulana@123
 
   const dispatch = useDispatch();
 
@@ -39,12 +43,18 @@ function Login() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(setLoggedUser({ email, token: 1234 }));
-    setEmail('');
-    setPassword('');
-    setDisabled(true);
+    const response = await login({ email, password });
+
+    console.log('eita', response.message);
+
+    const { token, message } = response;
+
+    return message ? setErrorMessage(message) : dispatch(setLoggedUser({ email, token }));
+    // setEmail('');
+    // setPassword('');
+    // setDisabled(true);
   };
 
   return (
@@ -84,6 +94,11 @@ function Login() {
           onClick={ () => navigate('/register', { replace: true }) }
         />
       </form>
+      { errorMessage && (
+        <p data-testid="common_login__element-invalid-email">
+          { errorMessage }
+        </p>
+      ) }
     </div>
   );
 }

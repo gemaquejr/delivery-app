@@ -11,7 +11,7 @@ const findUser = async (email) => {
   return response;
 };
 
-const login = async ({ email, password }) => {
+const login = async (email, password) => {
   if (!email || !password) {
     return { status: 400, json: { message: 'Algum campo está vazio' } };
   }
@@ -29,4 +29,4 @@ const login = async ({ email, password }) => {
   return { status: 200, json: { token } };
 };
 
-module.exports = { login };
+module.exports = login;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { /* useSelector */ useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import { setLoggedUser } from '../redux/reducers/loginSlice';
@@ -7,6 +8,7 @@ import { setLoggedUser } from '../redux/reducers/loginSlice';
 function Login() {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const MIN_PASSWORD_LENGTH = 6;
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -42,6 +44,7 @@ function Login() {
     dispatch(setLoggedUser({ email, token: 1234 }));
     setEmail('');
     setPassword('');
+    setDisabled(true);
   };
 
   return (
@@ -71,6 +74,14 @@ function Login() {
           type="submit"
           disabled={ disabled }
           testId="common_login__button-login"
+        />
+
+        <Button
+          buttonText="Ainda não tenho conta"
+          name="register"
+          type="button"
+          testId="common_login__button-register"
+          onClick={ () => navigate('/register', { replace: true }) }
         />
       </form>
     </div>

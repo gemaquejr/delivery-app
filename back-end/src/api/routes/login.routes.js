@@ -5,6 +5,6 @@ const { Router } = express;
 
 const loginRoutes = Router();
 
-loginRoutes.get('/login', login);
+loginRoutes.post('/login', login);
 
 module.exports = loginRoutes;

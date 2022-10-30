@@ -1,26 +1,36 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { describe } from 'pm2';
+import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './helpers/RenderWithRouter';
-import Login from '../pages/Login';
 
 describe('Tela de Login', () => {
-  test('Verifica se tela de Login é renderizada corretamente', () => {
-    renderWithRouter(<App />);
+  test('Verifica se a tela de Login é renderizada corretamente', () => {
+    renderWithRouter(<App />, ['/login']);
+    expect(screen.getByText(/login/i)).toBeInTheDocument();
+  });
+  test('Verifica se a tela de Login possui o input de "Email" ', () => {
+    renderWithRouter(<App />, ['/login']);
+    const idEmail = screen.getByTestId('common_login__input-email');
+    expect(idEmail).toBeInTheDocument();
+  });
+  test('Verifica se tela de Login possui o input de "Senha" ', () => {
+    renderWithRouter(<App />, ['/login']);
+    const idSenha = screen.getByTestId('common_login__input-password');
+    expect(idSenha).toBeInTheDocument();
+  });
+  test('Verifica se a tela de Login possui o botão "Login" ', () => {
+    renderWithRouter(<App />, ['/login']);
+    const idButtonLogin = screen.getByTestId('common_login__button-login');
+    expect(idButtonLogin).toBeInTheDocument();
+  });
+  test('Verifica se tela de Login possui o botão para "Registrar nova conta"', () => {
+    renderWithRouter(<App />, ['/login']);
+    const idButtonRegister = screen.getByTestId('common_login__button-register');
+    expect(idButtonRegister).toBeInTheDocument();
+  });
+  test('Verifica se a tela de Login possui o "elemento oculto mensagem de erro"', () => {
+    renderWithRouter(<App />, ['/login']);
+    const idElementOculto = screen.getByTestId('common_login__element-invalid-email');
+    expect(idElementOculto).toBeInTheDocument();
   });
 });
-
-// describe('Tests Login', () => {
-//   test('Verify if login is correctly render', () => {
-//     const { history } = renderWithRouter(<App />);
-//     history.push('/');
-//     expect(2 + 2).toEqual(4);
-//     // const inputs = screen.getAllByRole('textbox');
-//     // expect(inputs.length).toBe(1);
-//     // const idEmail = screen.getByTestId(EMAIL_INPUT);
-//     // expect(idEmail).toBeInTheDocument();
-//     // const idPassword = screen.getByTestId(PASSWORD_INPUT);
-//     // expect(idPassword).toBeInTheDocument();
-//   });
-// });

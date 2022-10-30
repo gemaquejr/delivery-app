@@ -47,14 +47,12 @@ function Login() {
     e.preventDefault();
     const response = await login({ email, password });
 
-    console.log('eita', response.message);
-
     const { token, message } = response;
 
-    return message ? setErrorMessage(message) : dispatch(setLoggedUser({ email, token }));
-    // setEmail('');
-    // setPassword('');
-    // setDisabled(true);
+    return message
+      ? setErrorMessage(message)
+      : dispatch(setLoggedUser({ email, token }))
+      && navigate('/customer/orders', { replace: true });
   };
 
   return (

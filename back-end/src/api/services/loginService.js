@@ -1,6 +1,6 @@
 const md5 = require('md5');
 const { Users } = require('../../database/models');
-const generateToken = require('../auth/generateToken');
+const token = require('../auth/token');
 
 const findUser = async (email) => {
   const response = await Users.findOne({
@@ -24,9 +24,9 @@ const login = async (email, password) => {
     return { status: 401, json: { message: 'Senha inválida' } };
   }
 
-  const token = await generateToken(email);
+  const userToken = await token.generateToken(email);
   
-  return { status: 200, json: { name: userInfo.name, role: userInfo.role, token } };
+  return { status: 200, json: { name: userInfo.name, role: userInfo.role, userToken } };
 };
 
-module.exports = login;
+module.exports = { login };

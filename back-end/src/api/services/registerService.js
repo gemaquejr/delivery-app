@@ -1,6 +1,6 @@
 const md5 = require('md5');
 const { Users } = require('../../database/models');
-const generateToken = require('../auth/generateToken');
+const token = require('../auth/token');
 
 const findRegister = async (email) => {
   const response = await Users.findOne({
@@ -21,7 +21,7 @@ const createRegister = async (name, email, password) => {
 
   const hashedPassword = md5(password);
 
-  const token = await generateToken(email);
+  const userToken = await token.generateToken(email);
   
   const newUser = await Users.create({
      name,
@@ -30,7 +30,7 @@ const createRegister = async (name, email, password) => {
      role: 'customer',
     });
 
-  return { status: 201, json: { ...newUser.dataValues, token } };
+  return { status: 201, json: { ...newUser.dataValues, userToken } };
 };
 
-module.exports = createRegister;
+module.exports = { createRegister };

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import { setLoggedUser } from '../redux/reducers/loginSlice';
-import login from '../services/loginAPI';
+import { login } from '../services/loginAPI';
 
 function Login() {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

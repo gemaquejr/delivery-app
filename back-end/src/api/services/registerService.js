@@ -12,7 +12,7 @@ const findRegister = async (email) => {
 };
 
 const createRegister = async (name, email, password) => {
-  if (!name || !email) {
+  if (!name || !email || !password) {
     return { status: 400, json: { message: 'Algum campo está vazio' } };
   }
   const userInfo = await findRegister(email);

@@ -17,7 +17,7 @@ const createRegister = async (name, email, password) => {
   }
   const userInfo = await findRegister(email);
 
-  if (userInfo) return { status: 404, json: { message: 'Usuário já cadastrado' } };
+  if (userInfo) return { status: 409, json: { message: 'Usuário já cadastrado' } };
 
   const hashedPassword = md5(password);
 

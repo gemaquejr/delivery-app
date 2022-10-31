@@ -1,9 +1,9 @@
 const md5 = require('md5');
-const { Users } = require('../../database/models');
+const { users } = require('../../database/models');
 const token = require('../auth/token');
 
 const findRegister = async (email) => {
-  const response = await Users.findOne({
+  const response = await users.findOne({
     where: {
       email,
     },
@@ -17,13 +17,13 @@ const createRegister = async (name, email, password) => {
   }
   const userInfo = await findRegister(email);
 
-  if (userInfo) return { status: 404, json: { message: 'Usuário já cadastrado' } };
+  if (userInfo) return { status: 409, json: { message: 'Usuário já cadastrado' } };
 
   const hashedPassword = md5(password);
 
   const userToken = await token.generateToken(email);
   
-  const newUser = await Users.create({
+  const newUser = await users.create({
      name,
      email,
      password: hashedPassword,

@@ -31,7 +31,7 @@ describe('login Service', () => {
       it('retorna um objeto json com token e status 200', async () => {
         const user = await loginService(userLoginMock.email, userLoginMock.password);
 
-        expect(user.json).to.have.property('token');
+        expect(user.json).to.have.all.keys('name', 'role', 'token');
         expect(user.status).to.be.eq(200);
       });
     });

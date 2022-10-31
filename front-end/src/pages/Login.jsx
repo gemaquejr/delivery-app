@@ -47,12 +47,26 @@ function Login() {
     e.preventDefault();
     const response = await login({ email, password });
 
-    const { token, message } = response;
+    const { token, message, name, role } = response;
 
-    return message
-      ? setErrorMessage(message)
-      : dispatch(setLoggedUser({ email, token, name: 'mock name' }))
-      && navigate('/customer/products', { replace: true });
+    if (message) return setErrorMessage(message);
+    dispatch(setLoggedUser({ email, token, name, role }));
+    const data = JSON.stringify({ ...response, email });
+    localStorage.setItem('userData', data);
+    switch (role) {
+    case 'customer':
+      navigate('/customer/products', { replace: true });
+      break;
+    case 'seller':
+      navigate('/seller/orders', { replace: true });
+      break;
+    case 'administrator':
+      navigate('/admin/manage', { replace: true });
+      break;
+
+    default:
+      break;
+    }
   };
 
   return (
@@ -92,11 +106,11 @@ function Login() {
           onClick={ () => navigate('/register', { replace: true }) }
         />
       </form>
-      { errorMessage && (
+      {errorMessage && (
         <p data-testid="common_login__element-invalid-email">
-          { errorMessage }
+          {errorMessage}
         </p>
-      ) }
+      )}
     </div>
   );
 }

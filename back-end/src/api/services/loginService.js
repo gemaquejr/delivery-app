@@ -26,7 +26,7 @@ const login = async (email, password) => {
 
   const token = await generateToken(email);
   
-  return { status: 200, json: { token } };
+  return { status: 200, json: { name: userInfo.name, role: userInfo.role, token } };
 };
 
 module.exports = login;

@@ -4,10 +4,6 @@ import App from '../App';
 import renderWithRouter from './helpers/RenderWithRouter';
 
 describe('Tela de Login', () => {
-  test('Verifica se a tela de Login é renderizada corretamente', () => {
-    renderWithRouter(<App />, ['/login']);
-    expect(screen.getByText(/login/i)).toBeInTheDocument();
-  });
   test('Verifica se a tela de Login possui o input de "Email" ', () => {
     renderWithRouter(<App />, ['/login']);
     const idEmail = screen.getByTestId('common_login__input-email');
@@ -28,8 +24,11 @@ describe('Tela de Login', () => {
     const idButtonRegister = screen.getByTestId('common_login__button-register');
     expect(idButtonRegister).toBeInTheDocument();
   });
-  test('Verifica se a tela de Login possui o "elemento oculto mensagem de erro"', () => {
-    renderWithRouter(<App />, ['/login']);
+  xtest('Verifica se Login possui o "elemento oculto mensagem de erro"', () => {
+    renderWithRouter(<App />, ['/register']);
+
+    const idButtonRegister = screen.getByTestId('common_login__button-register');
+    fireEvent.click(idButtonRegister);
     const idElementOculto = screen.getByTestId('common_login__element-invalid-email');
     expect(idElementOculto).toBeInTheDocument();
   });

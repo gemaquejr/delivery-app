@@ -5,7 +5,7 @@ import { setLoggedUser } from '../redux/reducers/loginSlice';
 import Button from './Button';
 
 function Header() {
-  const { name } = useSelector((state) => state.loginSlice.loggedUser);
+  const { name, role } = useSelector((state) => state.loginSlice.loggedUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -14,7 +14,9 @@ function Header() {
       email: '',
       token: '',
       name: '',
+      role: '',
     }));
+    localStorage.clear();
 
     navigate('/login', { replace: true });
   };
@@ -23,25 +25,39 @@ function Header() {
     <div>
       <div className="header-container">
         <div>
-          <Link
-            to="/customer/products"
-            data-testId="customer_products__element-navbar-link-products"
-          >
-            <h2>
-              Produtos
-            </h2>
-          </Link>
+          { role === 'customer'
+          && (
+            <Link
+              to="/customer/products"
+              data-testId="customer_products__element-navbar-link-products"
+            >
+              <h2>
+                Produtos
+              </h2>
+            </Link>
+          )}
         </div>
 
         <div>
-          <Link
-            to="/customer/orders"
-            data-testId="customer_products__element-navbar-link-orders"
-          >
-            <h2>
-              Meus Pedidos
-            </h2>
-          </Link>
+          { role === 'customer'
+            ? (
+              <Link
+                to="/customer/orders"
+                data-testId="customer_products__element-navbar-link-orders"
+              >
+                <h2>
+                  Meus Pedidos
+                </h2>
+              </Link>)
+            : (
+              <Link
+                to="/seller/orders"
+                data-testId="customer_products__element-navbar-link-orders"
+              >
+                <h2>
+                  Pedidos
+                </h2>
+              </Link>)}
         </div>
 
         <div>

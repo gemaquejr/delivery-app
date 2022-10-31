@@ -51,8 +51,8 @@ function Login() {
 
     return message
       ? setErrorMessage(message)
-      : dispatch(setLoggedUser({ email, token }))
-      && navigate('/customer/orders', { replace: true });
+      : dispatch(setLoggedUser({ email, token, name: 'mock name' }))
+      && navigate('/customer/products', { replace: true });
   };
 
   return (

@@ -1,9 +1,16 @@
 import React from 'react';
+import Header from '../components/Header';
 
 function CustomerOrders() {
   return (
     <div>
-      <h2>Página de Pedidos - Teste</h2>
+      <div>
+        <Header />
+      </div>
+
+      <div>
+        <h2>Página de cliente-PEDIDOS - Teste</h2>
+      </div>
     </div>
   );
 }

@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
+import { /* useSelector */ useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setLoggedUser } from '../redux/reducers/loginSlice';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
+import { register } from '../services/loginAPI';
 
 function Register() {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const MIN_PASSWORD_LENGTH = 6;
   const MIN_NAME_LENGTH = 12;
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const dispatch = useDispatch();
 
   const enableLoginButton = (userName, userEmail, userPassword) => {
     const emailTest = EMAIL_REGEX.test(userEmail);
@@ -39,9 +47,22 @@ function Register() {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await register({ name, email, password });
+
+    const { token, message, name: dataName, role } = response;
+
+    if (message) return setErrorMessage(message);
+    dispatch(setLoggedUser({ email, token, name: dataName, role }));
+    const data = JSON.stringify({ ...response, email });
+    localStorage.setItem('userData', data);
+    navigate('/customer/products', { replace: true });
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={ handleSubmit }>
         <FormInput
           label="name"
           type="text"
@@ -77,6 +98,11 @@ function Register() {
           testId="common_register__button-register"
         />
       </form>
+      {errorMessage && (
+        <p data-testid="common_register__element-invalid_register">
+          {errorMessage}
+        </p>
+      )}
     </div>
   );
 }

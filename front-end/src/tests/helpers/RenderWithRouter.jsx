@@ -7,7 +7,7 @@ const renderWithRouter = (component, historyEntries = ['/']) => {
   const history = createMemoryHistory({ initialEntries: historyEntries });
   return {
     ...render(
-      <MemoryRouter history={ history }>
+      <MemoryRouter history={ history } initialEntries={ historyEntries }>
         {component}
       </MemoryRouter>,
     ),

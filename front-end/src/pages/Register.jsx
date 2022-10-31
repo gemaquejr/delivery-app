@@ -74,7 +74,7 @@ function Register() {
           name="cadastrar"
           type="submit"
           disabled={ disabled }
-          testId="common_login__button-register"
+          testId="common_register__button-register"
         />
       </form>
     </div>

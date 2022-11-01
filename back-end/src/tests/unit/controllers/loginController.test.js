@@ -9,7 +9,7 @@ const testMyController = require('../../utils/testMyController');
 
 const loginServiceReturnMock = {
   status: 200,
-  json: { name: userMock.name, role: userMock.role, userTokenMock },
+  json: { name: userMock.name, role: userMock.role, userToken: userTokenMock },
 }
 
 const loginServiceBadPassReturnMock = {

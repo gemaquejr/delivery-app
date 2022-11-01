@@ -29,7 +29,7 @@ function Header() {
           && (
             <Link
               to="/customer/products"
-              data-testId="customer_products__element-navbar-link-products"
+              data-testid="customer_products__element-navbar-link-products"
             >
               <h2>
                 Produtos
@@ -43,7 +43,7 @@ function Header() {
             ? (
               <Link
                 to="/customer/orders"
-                data-testId="customer_products__element-navbar-link-orders"
+                data-testid="customer_products__element-navbar-link-orders"
               >
                 <h2>
                   Meus Pedidos
@@ -52,7 +52,7 @@ function Header() {
             : (
               <Link
                 to="/seller/orders"
-                data-testId="customer_products__element-navbar-link-orders"
+                data-testid="customer_products__element-navbar-link-orders"
               >
                 <h2>
                   Pedidos
@@ -62,7 +62,7 @@ function Header() {
 
         <div>
           <h2
-            data-testId="customer_products__element-navbar-user-full-name"
+            data-testid="customer_products__element-navbar-user-full-name"
           >
             { name }
           </h2>

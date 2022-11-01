@@ -28,7 +28,14 @@ const register = async ({ name, email, password }) => {
   }
 };
 
+const products = async () => {
+  const { data } = await instance.get('/products');
+
+  return data;
+};
+
 export {
   login,
   register,
+  products,
 };

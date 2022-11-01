@@ -6,6 +6,8 @@ const userMock = {
   role: 'administrator',
 };
 
+const userTokenMock = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiYmF0YXRpbmhhQGhvdG1haWwuY29tIiwiaWF0IjoxNjY3MjUyNDA2LCJleHAiOjE2Njc4NTcyMDZ9.ID3JdzGwqmin7j9m-5n_yP-MYmkbU96BE0-Ic-PHIBo';
+
 const userLoginMock = {
   email: 'adm@deliveryapp.com',
   password: '--adm2@21!!--',
@@ -37,10 +39,10 @@ const createUserMock = {
   password: 'f9104c649c25423a30e2968573899f48'
 };
 
-
 module.exports = {
   userLoginMock,
   userMock,
+  userTokenMock,
   userLoginBadPassMock,
   unregisteredUserMock,
   createUserMockReturn,

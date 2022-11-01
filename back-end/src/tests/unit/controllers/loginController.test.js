@@ -4,12 +4,12 @@ const jwtServices = require('../../../api/auth/token');
 
 const loginController = require('../../../api/controllers/loginController');
 const loginService  = require('../../../api/services/loginService');
-const { userMock, userLoginMock, userLoginBadPassMock, userToken } = require('../../mocks/userMock');
+const { userMock, userLoginMock, userLoginBadPassMock, userTokenMock } = require('../../mocks/userMock');
 const testMyController = require('../../utils/testMyController');
 
 const loginServiceReturnMock = {
   status: 200,
-  json: { name: userMock.name, role: userMock.role, userToken },
+  json: { name: userMock.name, role: userMock.role, userTokenMock },
 }
 
 const loginServiceBadPassReturnMock = {
@@ -24,7 +24,7 @@ describe('login Controller', () => {
 
       before(() => {
         sinon.stub(loginService, 'login').resolves(loginServiceReturnMock);
-        sinon.stub(jwtServices,'generateToken').returns(userToken);
+        sinon.stub(jwtServices,'generateToken').returns(userTokenMock);
       });
       after(() => {
         sinon.restore();
@@ -38,7 +38,7 @@ describe('login Controller', () => {
         expect(myController.body).to.all.keys('name', 'role', 'userToken');
         expect(myController.body.name).to.be.eq(userMock.name);
         expect(myController.body.role).to.be.eq(userMock.role);
-        expect(myController.body.userToken).to.be.eq(userToken);
+        expect(myController.body.userToken).to.be.eq(userTokenMock);
         expect(myController.spies.json.calledOnce).to.be.true;
       });
 

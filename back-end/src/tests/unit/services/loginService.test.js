@@ -4,7 +4,7 @@ const sinon = require('sinon');
 
 const { users }  = require('../../../database/models');
 const loginService = require('../../../api/services/loginService');
-const { userLoginMock, userMock, unregisteredUserMock, userLoginBadPassMock, userToken } = require('../../mocks/userMock');
+const { userLoginMock, userMock, unregisteredUserMock, userLoginBadPassMock, userTokenMock } = require('../../mocks/userMock');
 const jwtServices = require('../../../api/auth/token');
 
 describe('login Service', () => {
@@ -12,7 +12,7 @@ describe('login Service', () => {
     describe('e tem sucesso', () => {
       before(() => {
         sinon.stub(users, 'findOne').resolves(userMock);
-        sinon.stub(jwtServices, 'generateToken').returns(userToken);
+        sinon.stub(jwtServices, 'generateToken').returns(userTokenMock);
       });
       after(() => {
         sinon.restore();
@@ -37,7 +37,7 @@ describe('login Service', () => {
         expect(user.status).to.be.eq(200);
         expect(user.json.name).to.be.eq(userMock.name);
         expect(user.json.role).to.be.eq(userMock.role);
-        expect(user.json.userToken).to.be.eq(userToken);
+        expect(user.json.userToken).to.be.eq(userTokenMock);
       });
     });
 

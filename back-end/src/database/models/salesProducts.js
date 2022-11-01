@@ -12,6 +12,7 @@ const SalesProductsModel = (sequelize, DataTypes) => {
       primaryKey: true,
       foreignKey: true,
     },
+    quantity: DataTypes.INTEGER,
   }, {
     tableName: 'salesProducts',
     timestamps: false,

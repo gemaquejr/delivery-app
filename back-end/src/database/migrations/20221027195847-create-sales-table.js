@@ -12,6 +12,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'user_id',
         foreignKey: true,
         references: {
           model: 'users',
@@ -23,6 +24,7 @@ module.exports = {
       sellerId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        field: 'seller_id',
         foreignKey: true,
         references: {
           model: 'users',
@@ -34,18 +36,22 @@ module.exports = {
       totalPrice: {
         type: Sequelize.DECIMAL(9,2),
         allowNull: false,
+        field: 'total_price',
       },
       deliveryAddress: {
         type: Sequelize.STRING(100),
         allowNull: false,
+        field: 'delivery_address',
       },
       deliveryNumber: {
         type: Sequelize.STRING(50),
         allowNull: false,
+        field: 'delivery_number',
       },
       deliveryDate: {
         type: Sequelize.DATE,
         allowNull: false,
+        field: 'delivery_date',
       },
       status: {
         type: Sequelize.STRING(50),

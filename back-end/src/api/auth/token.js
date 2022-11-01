@@ -11,4 +11,4 @@ const generateToken = async (email) => {
   return token;
 }; //
 
-module.exports = generateToken;
+module.exports = { generateToken };

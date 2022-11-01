@@ -5,6 +5,6 @@ const { Router } = express;
 
 const productsRoutes = Router();
 
-productsRoutes.get('/products', products);
+productsRoutes.get('/products', products.findAllProducts);
 
 module.exports = productsRoutes;

@@ -21,9 +21,28 @@ const unregisteredUserMock = {
   password: 'vaiFalhar',
 };
 
+const createUserMockReturn = {
+  dataValues: {
+    id: 5,
+    name: 'Batatinha',
+    email: 'batatinha@hotmail.com',
+    password: 'f9104c649c25423a30e2968573899f48', //senha: md5(batatinha123)
+    role: 'customer',
+  }
+};
+
+const createUserMock = {
+  name: 'Batatinha',
+  email: 'batatinha@hotmail.com',
+  password: 'f9104c649c25423a30e2968573899f48'
+};
+
+
 module.exports = {
   userLoginMock,
   userMock,
   userLoginBadPassMock,
   unregisteredUserMock,
+  createUserMockReturn,
+  createUserMock,
 }

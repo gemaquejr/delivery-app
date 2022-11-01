@@ -17,4 +17,18 @@ const login = async ({ email, password }) => {
   }
 };
 
-export default login;
+const register = async ({ name, email, password }) => {
+  try {
+    const { data } = await instance.post('/register', { name, email, password });
+    return data;
+  } catch (err) {
+    return {
+      message: err.response.data.message,
+    };
+  }
+};
+
+export {
+  login,
+  register,
+};

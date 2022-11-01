@@ -1,9 +1,9 @@
 const md5 = require('md5');
-const { Users } = require('../../database/models');
-const generateToken = require('../auth/generateToken');
+const { users } = require('../../database/models');
+const token = require('../auth/token');
 
 const findRegister = async (email) => {
-  const response = await Users.findOne({
+  const response = await users.findOne({
     where: {
       email,
     },
@@ -12,25 +12,25 @@ const findRegister = async (email) => {
 };
 
 const createRegister = async (name, email, password) => {
-  if (!name || !email) {
+  if (!name || !email || !password) {
     return { status: 400, json: { message: 'Algum campo está vazio' } };
   }
   const userInfo = await findRegister(email);
 
-  if (userInfo) return { status: 404, json: { message: 'Usuário já cadastrado' } };
+  if (userInfo) return { status: 409, json: { message: 'Usuário já cadastrado' } };
 
   const hashedPassword = md5(password);
 
-  const token = await generateToken(email);
+  const userToken = await token.generateToken(email);
   
-  const newUser = await Users.create({
+  const newUser = await users.create({
      name,
      email,
      password: hashedPassword,
      role: 'customer',
     });
 
-  return { status: 201, json: { ...newUser.dataValues, token } };
+  return { status: 201, json: { ...newUser.dataValues, userToken } };
 };
 
-module.exports = createRegister;
+module.exports = { createRegister };

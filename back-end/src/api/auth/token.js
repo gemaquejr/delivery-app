@@ -9,6 +9,6 @@ const generateToken = async (email) => {
   const secret = process.env.JWT_SECRET || 'group05';
   const token = jwt.sign({ data: email }, secret, jwtConfig);
   return token;
-};
+}; //
 
-module.exports = generateToken;
+module.exports = { generateToken };

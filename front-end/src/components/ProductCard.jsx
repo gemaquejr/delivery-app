@@ -13,14 +13,20 @@ function ProductCard({ id, name, price, urlImage }) {
     quantidadeP: 0 });
 
   const handleChange = ({ target }) => {
+    setProductName({ ...productName, quantidadeP: target.value });
     setProductQnt(target.value);
     if (target.value < 0) {
-      setProductQnt(0);
+      setProductName({ ...productName, quantidadeP: 0 });
     }
   };
 
   const handleDecrement = () => {
+    if (productName.quantidadeP <= 0) {
+      return setProductName({ ...productName, quantidadeP: 0 });
+    }
+
     setProductName({ ...productName, quantidadeP: productName.quantidadeP - 1 });
+
     const productFind = productArray.find((item) => item.nameP === name);
     const productIndex = productArray.indexOf(productFind);
     if (productIndex === -1) {

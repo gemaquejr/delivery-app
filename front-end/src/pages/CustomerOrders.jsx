@@ -9,7 +9,7 @@ function CustomerOrders() {
       </div>
 
       <div>
-        <h2>Página de cliente-PEDIDOS - Teste</h2>
+        <h2>Página de cliente-pedidos - Teste</h2>
       </div>
     </div>
   );

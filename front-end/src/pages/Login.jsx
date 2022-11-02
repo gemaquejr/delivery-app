@@ -19,6 +19,7 @@ function Login() {
   // const { password } = useSelector((state) => state.loginSlice);
   // teste login
   // fulana@deliveryapp.com - fulana@123
+  // zebirita@email.com - $#zebirita#$
 
   const dispatch = useDispatch();
 

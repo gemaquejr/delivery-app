@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import { setLoggedUser } from '../redux/reducers/loginSlice';
-import { login } from '../services/loginAPI';
+import { login } from '../services/apiHelper';
 
 function Login() {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -19,6 +19,7 @@ function Login() {
   // const { password } = useSelector((state) => state.loginSlice);
   // teste login
   // fulana@deliveryapp.com - fulana@123
+  // zebirita@email.com - $#zebirita#$
 
   const dispatch = useDispatch();
 

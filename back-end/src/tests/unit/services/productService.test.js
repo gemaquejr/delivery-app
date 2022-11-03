@@ -4,7 +4,7 @@ const sinon = require('sinon');
 
 const { products }  = require('../../../database/models');
 const productService = require('../../../api/services/productService');
-const { productsListMock } = require('../../mocks/userMock');
+const { productsListMock } = require('../../mocks/productMock');
 
 describe('product Service', () => {
   describe('quando lista todos os produtos', () => {

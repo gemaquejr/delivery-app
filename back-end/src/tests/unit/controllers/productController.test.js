@@ -3,7 +3,7 @@ const sinon = require('sinon');
 
 const productController = require('../../../api/controllers/productController');
 const productService  = require('../../../api/services/productService');
-const { productsListMock } = require('../../mocks/userMock');
+const { productsListMock } = require('../../mocks/productMock');
 const testMyController = require('../../utils/testMyController');
 
 const productServiceReturnMock = {

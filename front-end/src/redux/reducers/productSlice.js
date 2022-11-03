@@ -2,14 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   products: [],
-  pedido: {
-    id: 0,
-    nome: '',
-    quantidade: 0,
-    valor: 0,
-    subTotal: 0,
-  },
-  arrayDePedidos: [],
+  orders: [],
   valorTotal: 0,
 };
 
@@ -20,9 +13,28 @@ const productSlice = createSlice({
     setProducts: (state, action) => {
       state.products = action.payload;
     },
+    addOrders: (state, action) => {
+      state.orders = [...state.orders, action.payload];
+    },
+    increment: (state, action) => {
+      state.orders = state.orders.map((item) => {
+        if (item.idP === action.payload.idP) {
+          item.quantidadeP += 1;
+        }
+        return item;
+      });
+    },
+    decrement: (state, action) => {
+      state.orders = state.orders.map((item) => {
+        if (item.idP === action.payload.idP) {
+          item.quantidadeP -= 1;
+        }
+        return item;
+      });
+    },
   },
 });
 
-export const { setProducts } = productSlice.actions;
+export const { setProducts, addOrders, increment, decrement } = productSlice.actions;
 
 export default productSlice.reducer;

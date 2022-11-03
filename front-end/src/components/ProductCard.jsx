@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { addOrders, increment, decrement } from '../redux/reducers/productSlice';
 import FormInput from './FormInput';
 import Button from './Button';
 
 function ProductCard({ id, name, price, urlImage }) {
-  const [productQnt, setProductQnt] = useState(0);
-  const [productArray, setProductArray] = useState([]);
+  const INDEX_OF_FALSE_RETURN = -1;
+  const dispatch = useDispatch();
+  const { orders } = useSelector((state) => state.productSlice);
+  console.log(orders);
+
+  // const [productQnt, setProductQnt] = useState(0);
+  // const [productArray, setProductArray] = useState([]);
   const [productName, setProductName] = useState({
     idP: id,
     nameP: name,
@@ -13,8 +20,7 @@ function ProductCard({ id, name, price, urlImage }) {
     quantidadeP: 0 });
 
   const handleChange = ({ target }) => {
-    setProductName({ ...productName, quantidadeP: target.value });
-    setProductQnt(target.value);
+    setProductName({ ...productName, quantidadeP: Number.parseInt(target.value, 10) });
     if (target.value < 0) {
       setProductName({ ...productName, quantidadeP: 0 });
     }
@@ -27,23 +33,25 @@ function ProductCard({ id, name, price, urlImage }) {
 
     setProductName({ ...productName, quantidadeP: productName.quantidadeP - 1 });
 
-    const productFind = productArray.find((item) => item.nameP === name);
-    const productIndex = productArray.indexOf(productFind);
-    if (productIndex === -1) {
-      productArray.push(productName);
+    const productFind = orders.find((item) => item.nameP === name);
+    const productIndex = orders.indexOf(productFind);
+    if (productIndex === INDEX_OF_FALSE_RETURN) {
+      dispatch(addOrders({ ...productName, quantidadeP: productName.quantidadeP - 1 }));
     } else {
-      productArray[productIndex] = productName;
+      dispatch(decrement(orders[productIndex]));
     }
   };
 
   const handleIncrement = () => {
     setProductName({ ...productName, quantidadeP: productName.quantidadeP + 1 });
-    const productFind = productArray.find((item) => item.nameP === name);
-    const productIndex = productArray.indexOf(productFind);
-    if (productIndex === -1) {
-      productArray.push(productName);
+    const productFind = orders.find((item) => item.nameP === name);
+    const productIndex = orders.indexOf(productFind);
+    if (productIndex === INDEX_OF_FALSE_RETURN) {
+      // productArray.push(productName);
+      dispatch(addOrders({ ...productName, quantidadeP: productName.quantidadeP + 1 }));
     } else {
-      productArray[productIndex] = productName;
+      // productArray[productIndex] = productName;
+      dispatch(increment(orders[productIndex]));
     }
   };
 

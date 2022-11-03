@@ -39,4 +39,24 @@ const createSale = async (saleInfo) => {
   return { status: 201, json: { message: 'funcionou' } };
 };
 
-module.exports = { createSale };
+const findSaleById = async (id) => {
+  const sale = await sales.findOne({
+    where: {
+      id,
+    },
+    raw: true,
+  });
+  const productsList = await SalesProducts.findAll({
+    where: {
+      saleId: id,
+    },
+    attributes: { exclude: ['id'] },
+    raw: true,
+  });
+
+  const response = { ...sale, productsList };
+
+  return { status: 201, json: response };
+};
+
+module.exports = { createSale, findSaleById };

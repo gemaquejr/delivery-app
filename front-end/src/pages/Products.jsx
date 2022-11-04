@@ -62,7 +62,6 @@ function Products() {
           buttonText={ `VALOR TOTAL: R$ ${handlePrice()}` }
           disabled={ parseInt(handlePrice(), 10) === 0 }
         />
-        {/* <h2>{ `VALOR TOTAL: R$ ${handlePrice()}`}</h2> */}
       </div>
     </div>
   );

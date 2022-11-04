@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { products } from '../services/apiHelper';
 import { setProducts } from '../redux/reducers/productSlice';
 import Header from '../components/Header';
+import Button from '../components/Button';
 
 function Products() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const arrayOfProducts = useSelector((state) => state.productSlice.products);
   const { orders } = useSelector((state) => state.productSlice);
 
@@ -51,7 +54,15 @@ function Products() {
       </div>
 
       <div className="valor-total">
-        <h2>{ `VALOR TOTAL: R$ ${handlePrice()}`}</h2>
+        <Button
+          type="button"
+          name="Carrinho"
+          onClick={ () => navigate('/checkout', { replace: true }) }
+          testId="customer_products__checkout-bottom-value"
+          buttonText={ `VALOR TOTAL: R$ ${handlePrice()}` }
+          disabled={ parseInt(handlePrice(), 10) === 0 }
+        />
+        {/* <h2>{ `VALOR TOTAL: R$ ${handlePrice()}`}</h2> */}
       </div>
     </div>
   );

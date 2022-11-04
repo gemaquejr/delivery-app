@@ -53,7 +53,7 @@ function Login() {
     if (message) return setErrorMessage(message);
     dispatch(setLoggedUser({ email, token, name, role }));
     const data = JSON.stringify({ name, role, token, email });
-    localStorage.setItem('userData', data);
+    localStorage.setItem('user', data);
     switch (role) {
     case 'customer':
       navigate('/customer/products', { replace: true });

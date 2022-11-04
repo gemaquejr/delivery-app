@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken');
 
-const generateToken = async (email) => {
-  const jwtConfig = {
-    expiresIn: '7d',
-    algorithm: 'HS256',
-  };
+const generateToken = async (email, role) => {
+  // const jwtConfig = {
+  //   expiresIn: '7d',
+  //   algorithm: 'HS256',
+  // };
   
-  const secret = process.env.JWT_SECRET || 'group05';
-  const token = jwt.sign({ data: email }, secret, jwtConfig);
+  const secret = 'secret_key';
+  const token = jwt.sign({ email, role }, secret);
   return token;
 }; //
 

@@ -53,12 +53,12 @@ function Products() {
         }
       </div>
 
-      <div className="valor-total">
+      <div className="valor-total" data-testid="customer_products__checkout-bottom-value">
         <Button
           type="button"
           name="Carrinho"
-          onClick={ () => navigate('/checkout', { replace: true }) }
-          testId="customer_products__checkout-bottom-value"
+          onClick={ () => navigate('/customer/checkout', { replace: true }) }
+          testId="customer_products__button-cart"
           buttonText={ `VALOR TOTAL: R$ ${handlePrice()}` }
           disabled={ parseInt(handlePrice(), 10) === 0 }
         />

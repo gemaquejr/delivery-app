@@ -7,7 +7,7 @@ const generateToken = async (email, role) => {
   // };
   
   const secret = 'secret_key';
-  const token = jwt.sign({ email, role }, secret);
+  const token = jwt.sign({ email, role }, secret, { expiresIn: '1h' });
   return token;
 }; //
 

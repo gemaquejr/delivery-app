@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken');
 
-const generateToken = async (email) => {
-  const jwtConfig = {
-    expiresIn: '7d',
-    algorithm: 'HS256',
-  };
-  
-  const secret = process.env.JWT_SECRET || 'group05';
-  const token = jwt.sign({ data: email }, secret, jwtConfig);
-  return token;
-}; //
+const secret = require('fs').readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' });
 
-module.exports = { generateToken };
+const generateToken = async (email, role) => {
+  const token = jwt.sign({ email, role }, secret);
+  return token;
+};
+
+const validateToken = async (token) => {
+  const decoded = jwt.verify(token, secret);
+  return decoded;
+};
+
+module.exports = { generateToken, validateToken };

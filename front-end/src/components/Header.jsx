@@ -11,7 +11,7 @@ function Header() {
 
   useEffect(() => {
     const userInfos = JSON.parse(localStorage.getItem('user'));
-    console.log(userInfos);
+    // console.log(userInfos);
     dispatch(setLoggedUser({ ...userInfos }));
   }, [dispatch]);
 

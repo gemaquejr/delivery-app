@@ -1,9 +1,13 @@
 import React from 'react';
+import Header from '../components/Header';
+import TableProducts from '../components/TableProducts';
 
 function Checkout() {
   return (
     <div>
-      <h2>Página de checkout - Teste</h2>
+      <Header />
+      <h2>Finalizar pedido</h2>
+      <TableProducts />
     </div>
   );
 }

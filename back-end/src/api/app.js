@@ -17,4 +17,4 @@ app.use(productsRoutes);
 app.use(registerRoutes);
 app.use(salesRoutes);
 
-module.exports = app;
+module.exports = app; //

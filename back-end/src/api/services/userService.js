@@ -10,6 +10,6 @@ const findAllSellers = async () => {
   const response = { status: 200, json: sellers };
 
   return response;
-}
+};
 
 module.exports = { findAllSellers };

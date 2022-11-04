@@ -8,6 +8,19 @@ import Header from '../components/Header';
 function Products() {
   const dispatch = useDispatch();
   const arrayOfProducts = useSelector((state) => state.productSlice.products);
+  const { orders } = useSelector((state) => state.productSlice);
+
+  const handlePrice = () => {
+    let totalPrice = 0;
+    if (orders.length > 0) {
+      orders.forEach((product) => {
+        totalPrice += product.quantidadeP * parseFloat(product.priceP);
+      });
+    }
+    const stringPrice = totalPrice.toFixed(2).toString();
+    const priceInBRL = stringPrice.replace('.', ',');
+    return priceInBRL;
+  };
 
   useEffect(() => {
     const allProducts = async () => {
@@ -38,7 +51,7 @@ function Products() {
       </div>
 
       <div className="valor-total">
-        <h2>VALOR TOTAL</h2>
+        <h2>{ `VALOR TOTAL: R$ ${handlePrice()}`}</h2>
       </div>
     </div>
   );

@@ -48,10 +48,10 @@ function Login() {
     e.preventDefault();
     const response = await login({ email, password });
 
-    const { token, message, name, role } = response;
+    const { userToken, message, name, role } = response;
 
     if (message) return setErrorMessage(message);
-    dispatch(setLoggedUser({ email, token, name, role }));
+    dispatch(setLoggedUser({ email, userToken, name, role }));
     const data = JSON.stringify({ ...response, email });
     localStorage.setItem('userData', data);
     switch (role) {

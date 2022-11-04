@@ -9,7 +9,6 @@ function Products() {
   const dispatch = useDispatch();
   const arrayOfProducts = useSelector((state) => state.productSlice.products);
   const { orders } = useSelector((state) => state.productSlice);
-  console.log(orders);
 
   const handlePrice = () => {
     let totalPrice = 0;
@@ -18,11 +17,10 @@ function Products() {
         totalPrice += product.quantidadeP * parseFloat(product.priceP);
       });
     }
-    console.log(totalPrice);
-    return totalPrice;
+    const stringPrice = totalPrice.toFixed(2).toString();
+    const priceInBRL = stringPrice.replace('.', ',');
+    return priceInBRL;
   };
-
-  // console.log(handlePrice());
 
   useEffect(() => {
     const allProducts = async () => {
@@ -53,7 +51,7 @@ function Products() {
       </div>
 
       <div className="valor-total">
-        <h2>{ `VALOR TOTAL: ${handlePrice()}`}</h2>
+        <h2>{ `VALOR TOTAL: R$ ${handlePrice()}`}</h2>
       </div>
     </div>
   );

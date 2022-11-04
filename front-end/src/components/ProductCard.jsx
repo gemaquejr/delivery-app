@@ -20,7 +20,6 @@ function ProductCard({ id, name, price, urlImage }) {
     if (!target.value) {
       target.value = 0;
     }
-    console.log(target.value);
     setProductName({ ...productName, quantidadeP: parseInt(target.value, 10) });
     if (target.value < 0) {
       setProductName({ ...productName, quantidadeP: 0 });
@@ -70,7 +69,7 @@ function ProductCard({ id, name, price, urlImage }) {
   return (
     <div className="product-card">
       <p data-testid={ `customer_products__element-card-price-${id}` }>
-        { price }
+        { `R$${price.replace('.', ',')}` }
       </p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }

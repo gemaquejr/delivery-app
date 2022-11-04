@@ -31,7 +31,7 @@ const login = async (email, password) => {
 
 const validate = async (userToken) => {
   const decoded = await token.validateToken(userToken);
-  return { status: 200, json: decoded};
+  return { status: 200, json: decoded };
 };
 
 module.exports = { login, validate };

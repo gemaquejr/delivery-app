@@ -14,6 +14,6 @@ const validate = async (req, res) => {
   const response = await loginService.validate(token);
 
   return res.status(response.status).json(response.json);
-}
+};
 
 module.exports = { login, validate };

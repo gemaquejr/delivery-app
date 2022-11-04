@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const secret = 'secret_key';
+const secret = require('fs').readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' });
 
 const generateToken = async (email, role) => {
   const token = jwt.sign({ email, role }, secret);
@@ -8,7 +8,7 @@ const generateToken = async (email, role) => {
 };
 
 const validateToken = async (token) => {
-  const decoded = jwt.verify(token, secret);
+  const decoded = jwt.verify(token, secret)
   return decoded;
 };
 

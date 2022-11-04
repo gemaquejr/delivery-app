@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { findAllSellers } from '../services/apiHelper';
 
 function TableOrder() {
+  const [sellers, setSeller] = useState([]);
+
+  useEffect(() => {
+    const findSellers = async () => {
+      const data = await findAllSellers();
+      console.log(data);
+      setSeller(data);
+    };
+
+    findSellers();
+  }, []);
+
   return (
     <div>
       <div>
@@ -11,7 +24,10 @@ function TableOrder() {
             id="seller"
             data-testid="customer_checkout__select-seller"
           >
-            <option value="Fulana">Fulana</option>
+            { sellers.map((seller) => (
+              <option key={ seller.id } value={ seller.id }>
+                { seller.name }
+              </option>)) }
           </select>
         </label>
       </div>

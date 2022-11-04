@@ -34,8 +34,14 @@ const products = async () => {
   return data;
 };
 
+const findAllSellers = async () => {
+  const { data } = await instance.get('/sellers');
+  return data;
+};
+
 export {
   login,
   register,
   products,
+  findAllSellers,
 };

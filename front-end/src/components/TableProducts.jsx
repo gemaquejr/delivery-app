@@ -70,15 +70,18 @@ function TableProducts({ page }) {
                   {(item.priceP * item.quantidadeP).toFixed(2)
                     .toString().replace('.', ',')}
                 </td>
-                <td>
-                  <Button
-                    buttonText="Remover"
-                    type="button"
-                    name="Remover"
-                    onClick={ () => console.log('clicou') }
-                    testId={ `${page}__element-order-table-remove-${index}` }
-                  />
-                </td>
+                {page === 'customer_checkout'
+                  && (
+                    <td>
+                      <Button
+                        buttonText="Remover"
+                        type="button"
+                        name="Remover"
+                        onClick={ () => console.log('clicou REMOVER') }
+                        testId={ `${page}__element-order-table-remove-${index}` }
+                      />
+                    </td>)}
+
               </tr>
             ))
           }

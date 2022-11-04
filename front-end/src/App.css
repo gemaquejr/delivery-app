@@ -5,6 +5,15 @@
   padding: 0;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+/* a:visited {
+  text-decoration: none;
+  color: black;
+} */
+
 .card-container {
   border: 1px solid forestgreen;
   display: flex;
@@ -44,6 +53,22 @@
 
 .valor-total {
   margin-left: 50%;
+}
+
+.order-container {
+  border: 1px solid red;
+  display: flex;
+  height: 750px;
+  margin-top: 20px;
+}
+
+.order-card {
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  width: 200px;
+  margin: 20px;
 }
 
 /* 

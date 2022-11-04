@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './helpers/RenderWithRouter';
 
@@ -24,12 +25,16 @@ describe('Tela de Login', () => {
     const idButtonRegister = screen.getByTestId('common_login__button-register');
     expect(idButtonRegister).toBeInTheDocument();
   });
-  xtest('Verifica se Login possui o "elemento oculto mensagem de erro"', () => {
-    renderWithRouter(<App />, ['/register']);
-
-    const idButtonRegister = screen.getByTestId('common_login__button-register');
-    fireEvent.click(idButtonRegister);
-    const idElementOculto = screen.getByTestId('common_login__element-invalid-email');
-    expect(idElementOculto).toBeInTheDocument();
+  test('Ao tentar fazer login com usario invalido,'
+  + 'retorna: "Usuário não encontrado"', async () => {
+    renderWithRouter(<App />, ['/login']);
+    const inputEmailEl = screen.getByTestId('common_login__input-email');
+    userEvent.type(inputEmailEl, 'test@test.com');
+    const inputPasswordEl = screen.getByTestId('common_login__input-password');
+    userEvent.type(inputPasswordEl, '123456');
+    const buttonLogin = screen.getByRole('button', { name: /login/i });
+    userEvent.click(buttonLogin);
+    const elOculto = await screen.findByTestId('common_login__element-invalid-email');
+    expect(elOculto).toBeInTheDocument();
   });
 });

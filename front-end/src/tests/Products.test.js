@@ -29,10 +29,10 @@ describe('Tela de Produtos', () => {
       .getByTestId('customer_products__element-navbar-link-logout');
     expect(idLinkSair).toBeInTheDocument();
   });
-  xtest('Verifica se a tela de Produtos possui o nome do produto ', () => {
+  test('Verifica se a tela de Produtos possui o nome do produto ', () => {
     renderWithRouter(<App />, [PRODUCT_ROUTER]);
     const idNameProduct = screen
-      .getByTestId('customer_products__element-card-title-<id>');
+      .getByTestId('customer_products__element-card-title-11');
     expect(idNameProduct).toBeInTheDocument();
   });
   xtest('Verifica se a tela de Produtos possui o preco do produto ', () => {

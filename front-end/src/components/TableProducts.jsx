@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Button from './Button';
 
-function TableProducts() {
+function TableProducts({ page }) {
   const arrayOfOrders = useSelector(
     (state) => state.productSlice.orders,
   );
@@ -10,6 +11,11 @@ function TableProducts() {
   // nameP:"Skol Beats Senses 269ml"
   // priceP:"3.57"
   // quantidadeP:2}}
+
+  let totalPrice = 0;
+  arrayOfOrders.forEach((item) => {
+    totalPrice += item.priceP * item.quantidadeP;
+  });
 
   return (
     <div>
@@ -28,18 +34,49 @@ function TableProducts() {
           {
             arrayOfOrders.map((item, index) => (
               <tr key={ item.idP }>
-                <td>{index + 1}</td>
-                <td>{item.nameP}</td>
-                <td>{item.quantidadeP}</td>
-                <td>{item.priceP}</td>
-                <td>{item.priceP * item.quantidadeP}</td>
+                <td
+                  data-testid={
+                    `${page}__element-order-table-item-number-${index}`
+                  }
+                >
+                  {index + 1}
+                </td>
+                <td
+                  data-testid={
+                    `${page}__element-order-table-name-${index}`
+                  }
+                >
+                  {item.nameP}
+                </td>
+                <td
+                  data-testid={
+                    `${page}__element-order-table-quantity-${index}`
+                  }
+                >
+                  {item.quantidadeP}
+                </td>
+                <td
+                  data-testid={
+                    `${page}__element-order-table-unit-price-${index}`
+                  }
+                >
+                  {(item.priceP).replace('.', ',')}
+                </td>
+                <td
+                  data-testid={
+                    `${page}__element-order-table-sub-total-${index}`
+                  }
+                >
+                  {(item.priceP * item.quantidadeP).toFixed(2)
+                    .toString().replace('.', ',')}
+                </td>
                 <td>
                   <Button
                     buttonText="Remover"
                     type="button"
                     name="Remover"
                     onClick={ () => console.log('clicou') }
-                    testid={ `customer_checkout__element-order-table-remove-${index}` }
+                    testId={ `${page}__element-order-table-remove-${index}` }
                   />
                 </td>
               </tr>
@@ -47,8 +84,17 @@ function TableProducts() {
           }
         </tbody>
       </table>
+      <h2
+        data-testid={ `${page}__element-order-total-price` }
+      >
+        { `Total R$${totalPrice.toFixed(2).toString().replace('.', ',')}` }
+      </h2>
     </div>
   );
 }
+
+TableProducts.propTypes = {
+  page: PropTypes.string.isRequired,
+};
 
 export default TableProducts;

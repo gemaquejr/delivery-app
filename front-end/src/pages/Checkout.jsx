@@ -7,7 +7,7 @@ function Checkout() {
     <div>
       <Header />
       <h2>Finalizar pedido</h2>
-      <TableProducts />
+      <TableProducts page="customer_checkout" />
     </div>
   );
 }

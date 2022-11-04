@@ -1,14 +1,14 @@
 const jwt = require('jsonwebtoken');
+const secret = 'secret_key';
 
 const generateToken = async (email, role) => {
-  // const jwtConfig = {
-  //   expiresIn: '7d',
-  //   algorithm: 'HS256',
-  // };
-  
-  const secret = 'secret_key';
-  const token = jwt.sign({ email, role }, secret, { expiresIn: '1h' });
+  const token = jwt.sign({ email, role }, secret);
   return token;
-}; //
+};
 
-module.exports = { generateToken };
+const validateToken = async (token) => {
+  const decoded = jwt.verify(token, secret)
+  return decoded;
+};
+
+module.exports = { generateToken, validateToken };

@@ -29,4 +29,9 @@ const login = async (email, password) => {
   return { status: 200, json: { name: userInfo.name, role: userInfo.role, userToken } };
 };
 
-module.exports = { login };
+const validate = async (userToken) => {
+  const decoded = await token.validateToken(userToken);
+  return { status: 200, json: decoded};
+};
+
+module.exports = { login, validate };

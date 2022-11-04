@@ -8,7 +8,7 @@ const generateToken = async (email, role) => {
 };
 
 const validateToken = async (token) => {
-  const decoded = jwt.verify(token, secret)
+  const decoded = jwt.verify(token, secret);
   return decoded;
 };
 

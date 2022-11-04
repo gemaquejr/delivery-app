@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addOrders, increment, decrement } from '../redux/reducers/productSlice';
+import {
+  addOrders, increment, decrement, setProductsQty } from '../redux/reducers/productSlice';
 import FormInput from './FormInput';
 import Button from './Button';
 
@@ -9,10 +10,6 @@ function ProductCard({ id, name, price, urlImage }) {
   const INDEX_OF_FALSE_RETURN = -1;
   const dispatch = useDispatch();
   const { orders } = useSelector((state) => state.productSlice);
-  console.log(orders);
-
-  // const [productQnt, setProductQnt] = useState(0);
-  // const [productArray, setProductArray] = useState([]);
   const [productName, setProductName] = useState({
     idP: id,
     nameP: name,
@@ -20,9 +17,24 @@ function ProductCard({ id, name, price, urlImage }) {
     quantidadeP: 0 });
 
   const handleChange = ({ target }) => {
-    setProductName({ ...productName, quantidadeP: Number.parseInt(target.value, 10) });
+    if (!target.value) {
+      target.value = 0;
+    }
+    console.log(target.value);
+    setProductName({ ...productName, quantidadeP: parseInt(target.value, 10) });
     if (target.value < 0) {
       setProductName({ ...productName, quantidadeP: 0 });
+    }
+    const productFind = orders.find((item) => item.nameP === name);
+    const productIndex = orders.indexOf(productFind);
+    if (productIndex === INDEX_OF_FALSE_RETURN) {
+      // productArray.push(productName);
+      dispatch(addOrders({ ...productName, quantidadeP: parseInt(target.value, 10) }));
+    } else {
+      // productArray[productIndex] = productName;
+      dispatch(
+        setProductsQty({ ...productName, quantidadeP: parseInt(target.value, 10) }),
+      );
     }
   };
 

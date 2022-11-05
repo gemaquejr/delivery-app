@@ -1,21 +1,24 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteOrder } from '../redux/reducers/productSlice';
 import Button from './Button';
 
 function TableProducts({ page }) {
+  const dispatch = useDispatch();
+
   const arrayOfOrders = useSelector(
     (state) => state.productSlice.orders,
   );
-  // arrayOfOrders{{idP(pin):10
-  // nameP:"Skol Beats Senses 269ml"
-  // priceP:"3.57"
-  // quantidadeP:2}}
 
   let totalPrice = 0;
   arrayOfOrders.forEach((item) => {
     totalPrice += item.priceP * item.quantidadeP;
   });
+
+  const handleRemove = (id) => {
+    dispatch(deleteOrder(id));
+  };
 
   return (
     <div>
@@ -77,7 +80,7 @@ function TableProducts({ page }) {
                         buttonText="Remover"
                         type="button"
                         name="Remover"
-                        onClick={ () => console.log('clicou REMOVER') }
+                        onClick={ () => handleRemove(item.idP) }
                         testId={ `${page}__element-order-table-remove-${index}` }
                       />
                     </td>)}

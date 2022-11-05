@@ -43,11 +43,20 @@ const productSlice = createSlice({
     setTotalValue: (state, action) => {
       state.totalValue = action.payload;
     },
+    deleteOrder: (state, action) => {
+      state.orders = state.orders.filter((item) => item.idP !== action.payload);
+    },
   },
 });
 
 export const {
-  setProducts, addOrders, increment, decrement, setProductsQty, setTotalValue,
+  setProducts,
+  addOrders,
+  increment,
+  decrement,
+  setProductsQty,
+  setTotalValue,
+  deleteOrder,
 } = productSlice.actions;
 
 export default productSlice.reducer;

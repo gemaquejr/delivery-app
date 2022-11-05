@@ -7,7 +7,6 @@ function TableOrder() {
   useEffect(() => {
     const findSellers = async () => {
       const data = await findAllSellers();
-      console.log(data);
       setSeller(data);
     };
 

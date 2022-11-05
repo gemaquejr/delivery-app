@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteOrder } from '../redux/reducers/productSlice';
+import { deleteOrder, setTotalValue } from '../redux/reducers/productSlice';
 import Button from './Button';
 
 function TableProducts({ page }) {
@@ -15,6 +15,10 @@ function TableProducts({ page }) {
   arrayOfOrders.forEach((item) => {
     totalPrice += item.priceP * item.quantidadeP;
   });
+
+  useEffect(() => {
+    dispatch(setTotalValue(totalPrice.toFixed(2).toString().replace('.', ',')));
+  }, [dispatch, totalPrice]);
 
   const handleRemove = (id) => {
     dispatch(deleteOrder(id));

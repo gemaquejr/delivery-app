@@ -26,7 +26,7 @@ const login = async (email, password) => {
 
   const userToken = await token.generateToken(email, userInfo.role);
   
-  return { status: 200, json: { name: userInfo.name, role: userInfo.role, userToken } };
+  return { status: 200, json: { name: userInfo.name, role: userInfo.role, userToken, id: userInfo.id } };
 };
 
 const validate = async (userToken) => {

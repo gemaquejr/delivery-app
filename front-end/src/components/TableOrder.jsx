@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { findAllSellers } from '../services/apiHelper';
+import FormInput from './FormInput';
 
 function TableOrder() {
   const [sellers, setSeller] = useState([]);
+  const [address, setAddress] = useState('');
+  const [addressNumber, setAddressNumber] = useState('');
 
   useEffect(() => {
     const findSellers = async () => {
@@ -12,6 +15,15 @@ function TableOrder() {
 
     findSellers();
   }, []);
+
+  const handleChange = ({ target }) => {
+    if (target.name === 'address') {
+      setAddress(target.value);
+    }
+    if (target.name === 'addressNumber') {
+      setAddressNumber(target.value);
+    }
+  };
 
   return (
     <div>
@@ -31,12 +43,28 @@ function TableOrder() {
         </label>
       </div>
       <div>
-        <p>Endereço</p>
-        <input type="text" data-testid="customer_checkout__input-address" />
+        <FormInput
+          label="Endereço"
+          type="text"
+          name="address"
+          value={ address }
+          onChange={ handleChange }
+          testId="customer_checkout__input-address"
+        />
+        {/* <p>Endereço</p>
+        <input type="text" data-testid="customer_checkout__input-address" /> */}
       </div>
       <div>
-        <p>Número</p>
-        <input type="text" data-testid="customer_checkout__input-address-number" />
+        <FormInput
+          label="Número"
+          type="text"
+          name="addressNumber"
+          value={ addressNumber }
+          onChange={ handleChange }
+          testId="customer_checkout__input-address-number"
+        />
+        {/* <p>Número</p>
+        <input type="text" data-testid="customer_checkout__input-address-number" /> */}
       </div>
     </div>
   );

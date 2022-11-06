@@ -10,7 +10,6 @@ const login = async ({ email, password }) => {
 
     return data;
   } catch (err) {
-    // console.log(err.response.data.message);
     return {
       message: err.response.data.message,
     };
@@ -39,9 +38,30 @@ const findAllSellers = async () => {
   return data;
 };
 
+const newSale = async () => {
+  try {
+    const data = await instance.post('/sales', {
+      userId,
+      sellerId,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      productsList,
+    });
+
+    console.log(data);
+    return data;
+  } catch (err) {
+    return {
+      message: err.response.data.message,
+    };
+  }
+};
+
 export {
   login,
   register,
   products,
   findAllSellers,
+  newSale,
 };

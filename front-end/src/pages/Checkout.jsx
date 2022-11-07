@@ -26,7 +26,7 @@ function Checkout() {
 
   const saleInfo = {
     userId: id,
-    sellerId: 3,
+    sellerId: null,
     totalPrice: totalValue,
     deliveryAddress: address,
     deliveryNumber: addressNumber,
@@ -34,6 +34,8 @@ function Checkout() {
   };
 
   const handleCheckout = async () => {
+    saleInfo.sellerId = document.getElementById('seller-select').value;
+    console.log(saleInfo);
     const saleId = await newSale(saleInfo);
     console.log(saleId);
 

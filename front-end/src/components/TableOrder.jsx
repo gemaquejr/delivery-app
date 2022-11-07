@@ -48,7 +48,12 @@ function TableOrder() {
           onChange={ handleChange }
         >
           { sellers.map((seller) => (
-            <option key={ seller.id } id={ seller.id } name={ seller.name }>
+            <option
+              key={ seller.id }
+              id={ seller.id }
+              name={ seller.name }
+              value={ seller.id }
+            >
               { seller.name }
             </option>)) }
         </select>

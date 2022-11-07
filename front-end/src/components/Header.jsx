@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { setLoggedUser } from '../redux/reducers/loginSlice';
 import Button from './Button';
 
 function Header() {
+  const { id } = useParams();
   const { name, role } = useSelector((state) => state.loginSlice.loggedUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     const userInfos = JSON.parse(localStorage.getItem('user'));
-    // console.log(userInfos);
     dispatch(setLoggedUser({ ...userInfos }));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const handleLogout = () => {
     dispatch(setLoggedUser({

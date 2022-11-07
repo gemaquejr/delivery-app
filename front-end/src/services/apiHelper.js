@@ -50,6 +50,17 @@ const newSale = async (saleInfo, token) => {
   }
 };
 
+const getAllSales = async () => {
+  try {
+    const { data } = await instance.get('/sales');
+    return data;
+  } catch (err) {
+    return {
+      message: err.response.data.message,
+    };
+  }
+};
+
 const getOrderDetails = async (id) => {
   const { data } = await instance.get(`sales/${id}`);
   return data;
@@ -62,4 +73,5 @@ export {
   findAllSellers,
   newSale,
   getOrderDetails,
+  getAllSales,
 };

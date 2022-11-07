@@ -38,16 +38,16 @@ const findAllSellers = async () => {
   return data;
 };
 
-const newSale = async (saleInfo) => {
+const newSale = async (saleInfo, token) => {
   try {
-    const { data } = await instance.post('/sales', saleInfo);
+    const { data } = await instance
+      .post('/sales', saleInfo, { headers: { Authorization: token } });
 
     console.log(data);
     return data;
   } catch (err) {
-    console.log(err);
     return {
-      message: 'err.response.data.message',
+      message: err.response.data.message,
     };
   }
 };

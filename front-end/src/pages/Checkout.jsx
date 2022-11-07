@@ -12,7 +12,7 @@ function Checkout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { id } = useSelector((state) => state.loginSlice.loggedUser);
+  const { id, token } = useSelector((state) => state.loginSlice.loggedUser);
   const totalValue = useSelector((state) => state.productSlice.totalValue);
   const arrayOfOrders = useSelector(
     (state) => state.productSlice.orders,
@@ -37,7 +37,7 @@ function Checkout() {
     saleInfo.sellerId = parseInt(document.getElementById('seller-select').value, 10);
     const totalPrice = parseFloat(totalValue.replace(',', '.'));
     saleInfo.totalPrice = totalPrice;
-    const { saleId } = await newSale(saleInfo);
+    const { saleId } = await newSale(saleInfo, token);
     console.log(saleId);
 
     dispatch(setSales(saleId));

@@ -17,6 +17,12 @@ const productSlice = createSlice({
     addOrders: (state, action) => {
       state.orders = [...state.orders, action.payload];
     },
+    orderDetails: (state, action) => {
+      state.orders = action.payload;
+    },
+    resetOrders: (state) => {
+      state.orders = [];
+    },
     increment: (state, action) => {
       state.orders = state.orders.map((item) => {
         if (item.idP === action.payload.idP) {
@@ -56,6 +62,8 @@ const productSlice = createSlice({
 export const {
   setProducts,
   addOrders,
+  orderDetails,
+  resetOrders,
   increment,
   decrement,
   setProductsQty,

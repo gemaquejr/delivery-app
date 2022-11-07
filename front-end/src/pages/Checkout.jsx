@@ -38,7 +38,6 @@ function Checkout() {
     const totalPrice = parseFloat(totalValue.replace(',', '.'));
     saleInfo.totalPrice = totalPrice;
     const { saleId } = await newSale(saleInfo, token);
-    console.log(saleId);
 
     dispatch(setSales(saleId));
 

@@ -28,7 +28,7 @@ function OrderCard({
         </p>
         { orderRole === 'seller'
         && (
-          <p data-testid={ `${orderRole}_orders__element-card-address${orderId}` }>
+          <p data-testid={ `${orderRole}_orders__element-card-address-${orderId}` }>
             { orderAddress }
           </p>
         )}

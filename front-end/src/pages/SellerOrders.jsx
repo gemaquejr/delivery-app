@@ -1,39 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { getAllSales } from '../services/apiHelper';
 import Header from '../components/Header';
 import OrderCard from '../components/OrderCard';
 
 function SellerOrders() {
-  const { role } = useSelector((state) => state.loginSlice.loggedUser);
-  const mockOrder = [{
-    id: 1,
-    status: 'pendente',
-    data: '4/11/2022',
-    valorTotal: 100,
-    address: 'rua dos bobos, nº 0',
-  },
-  {
-    id: 2,
-    status: 'ok',
-    data: '4/11/2022',
-    valorTotal: 90,
-    address: 'rua do bill, nº 2',
-  },
-  ];
+  const { role, id } = useSelector((state) => state.loginSlice.loggedUser);
+  const [arrayOfSales, setArrayOfSales] = useState([]);
+
+  useEffect(() => {
+    const allSales = async () => {
+      const data = await getAllSales();
+
+      setArrayOfSales(data.filter((item) => item.sellerId === id));
+    };
+
+    allSales();
+  }, [id]);
 
   return (
     <div>
       <Header />
       <div className="order-container">
         {
-          mockOrder.map((item) => (
+          arrayOfSales.map((item) => (
             <OrderCard
               key={ item.id }
               orderId={ item.id }
               orderStatus={ item.status }
-              orderTotalValue={ item.valorTotal }
-              orderAddress={ item.address }
-              orderDate={ item.data }
+              orderTotalValue={ item.totalPrice }
+              orderAddress={ `${item.deliveryAddress}, ${item.deliveryNumber}` }
+              orderDate={ new Date(item.saleDate).toLocaleDateString('pt-BR') }
               orderRole={ role }
             />
           ))

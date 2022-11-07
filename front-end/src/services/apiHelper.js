@@ -43,7 +43,18 @@ const newSale = async (saleInfo, token) => {
     const { data } = await instance
       .post('/sales', saleInfo, { headers: { Authorization: token } });
 
-    console.log(data);
+    return data;
+  } catch (err) {
+    return {
+      message: err.response.data.message,
+    };
+  }
+};
+
+const getAllSales = async () => {
+  try {
+    const { data } = await instance.get('/sales');
+
     return data;
   } catch (err) {
     return {
@@ -58,4 +69,5 @@ export {
   products,
   findAllSellers,
   newSale,
+  getAllSales,
 };

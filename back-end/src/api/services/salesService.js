@@ -44,7 +44,12 @@ const findSaleById = async (id) => {
     where: {
       id,
     },
-    include: [{ model: products, as: 'products', through: { attributes: ['quantity'] }, attributes: { exclude: ['urlImage'] }}],
+    include: [
+      {
+        model: products,
+        as: 'products',
+        through: { attributes: ['quantity'] },
+        attributes: { exclude: ['urlImage'] } }],
   });
 
   return { status: 201, json: sale };

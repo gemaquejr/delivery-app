@@ -17,7 +17,7 @@ const SalesModel = (sequelize, DataTypes) => {
     totalPrice: DataTypes.DECIMAL(9, 2),
     deliveryAddress: DataTypes.STRING,
     deliveryNumber: DataTypes.STRING,
-    deliveryDate: DataTypes.DATE,
+    saleDate: DataTypes.DATE,
     status: DataTypes.STRING,
   }, {
     tableName: 'sales',

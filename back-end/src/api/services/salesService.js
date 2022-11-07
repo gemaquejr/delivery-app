@@ -15,8 +15,8 @@ const createSaleEntry = async (saleInfo) => {
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    deliveryDate: new Date(),
-    status: 'em preparo',
+    saleDate: new Date(),
+    status: 'Pendente',
   });
 
   return newSale;

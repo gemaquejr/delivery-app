@@ -63,6 +63,6 @@ const getAllSales = async () => {
   const allSales = await sales.findAll();
 
   return { status: 201, json: allSales };
-}
+};
 
 module.exports = { createSale, findSaleById, getAllSales };

@@ -20,6 +20,6 @@ const findAllSales = async (_req, res) => {
   const response = await salesService.getAllSales();
 
   return res.status(response.status).json(response.json);
-}
+};
 
 module.exports = { newSale, findSale, findAllSales };

@@ -37,9 +37,6 @@ function OrderCard({
   );
 }
 
-// 33: customer_orders__element-order-id-<id>
-// 48: seller_orders__element-order-id-<id>
-
 OrderCard.propTypes = {
   orderId: PropTypes.oneOfType([
     PropTypes.string,

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { newSale } from '../services/apiHelper';
-import { setSales } from '../redux/reducers/productSlice';
+import { setSales, resetOrders } from '../redux/reducers/productSlice';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import TableOrder from '../components/TableOrder';
@@ -40,6 +40,7 @@ function Checkout() {
     const { saleId } = await newSale(saleInfo, token);
 
     dispatch(setSales(saleId));
+    dispatch(resetOrders());
 
     if (saleId) navigate(`/customer/orders/${saleId}`);
   };

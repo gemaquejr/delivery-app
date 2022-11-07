@@ -42,7 +42,6 @@ const newSale = async (saleInfo, token) => {
   try {
     const { data } = await instance
       .post('/sales', saleInfo, { headers: { Authorization: token } });
-
     return data;
   } catch (err) {
     return {
@@ -54,7 +53,6 @@ const newSale = async (saleInfo, token) => {
 const getAllSales = async () => {
   try {
     const { data } = await instance.get('/sales');
-
     return data;
   } catch (err) {
     return {
@@ -63,11 +61,17 @@ const getAllSales = async () => {
   }
 };
 
+const getOrderDetails = async (id) => {
+  const { data } = await instance.get(`sales/${id}`);
+  return data;
+};
+
 export {
   login,
   register,
   products,
   findAllSellers,
   newSale,
+  getOrderDetails,
   getAllSales,
 };

@@ -34,7 +34,7 @@ function TableProducts({ page }) {
             <th>Quantidade</th>
             <th>Valor Unitário</th>
             <th>Sub-Total</th>
-            <th>Remover</th>
+            {page === 'customer_checkout' && (<th>Remover</th>)}
           </tr>
         </thead>
         <tbody>
@@ -67,7 +67,9 @@ function TableProducts({ page }) {
                     `${page}__element-order-table-unit-price-${index}`
                   }
                 >
-                  {(item.priceP).replace('.', ',')}
+                  {
+                    (item.priceP).replace('.', ',')
+                  }
                 </td>
                 <td
                   data-testid={
@@ -88,7 +90,6 @@ function TableProducts({ page }) {
                         testId={ `${page}__element-order-table-remove-${index}` }
                       />
                     </td>)}
-
               </tr>
             ))
           }

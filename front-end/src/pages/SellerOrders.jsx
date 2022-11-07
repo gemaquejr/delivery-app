@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Header from '../components/Header';
 import OrderCard from '../components/OrderCard';
 
 function SellerOrders() {
+  const { role } = useSelector((state) => state.loginSlice.loggedUser);
   const mockOrder = [{
     id: 1,
     status: 'pendente',
@@ -31,6 +33,8 @@ function SellerOrders() {
               orderStatus={ item.status }
               orderTotalValue={ item.valorTotal }
               orderAddress={ item.address }
+              orderDate={ item.data }
+              orderRole={ role }
             />
           ))
         }

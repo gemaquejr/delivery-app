@@ -38,22 +38,16 @@ const findAllSellers = async () => {
   return data;
 };
 
-const newSale = async () => {
+const newSale = async (saleInfo) => {
   try {
-    const data = await instance.post('/sales', {
-      userId,
-      sellerId,
-      totalPrice,
-      deliveryAddress,
-      deliveryNumber,
-      productsList,
-    });
+    const { data } = await instance.post('/sales', saleInfo);
 
     console.log(data);
     return data;
   } catch (err) {
+    console.log(err);
     return {
-      message: err.response.data.message,
+      message: 'err.response.data.message',
     };
   }
 };

@@ -37,7 +37,6 @@ function Checkout() {
     saleInfo.sellerId = parseInt(document.getElementById('seller-select').value, 10);
     const totalPrice = parseFloat(totalValue.replace(',', '.'));
     saleInfo.totalPrice = totalPrice;
-    console.log(saleInfo);
     const saleId = await newSale(saleInfo);
     console.log(saleId);
 

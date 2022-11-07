@@ -34,8 +34,6 @@ function TableOrder() {
     }
   };
 
-  console.log(sellerIdValue);
-
   return (
     <div>
       <label htmlFor="seller-select">

@@ -27,14 +27,16 @@ function Checkout() {
   const saleInfo = {
     userId: id,
     sellerId: null,
-    totalPrice: totalValue,
+    totalPrice: null,
     deliveryAddress: address,
     deliveryNumber: addressNumber,
     productsList,
   };
 
   const handleCheckout = async () => {
-    saleInfo.sellerId = document.getElementById('seller-select').value;
+    saleInfo.sellerId = parseInt(document.getElementById('seller-select').value, 10);
+    const totalPrice = parseFloat(totalValue.replace(',', '.'));
+    saleInfo.totalPrice = totalPrice;
     console.log(saleInfo);
     const saleId = await newSale(saleInfo);
     console.log(saleId);

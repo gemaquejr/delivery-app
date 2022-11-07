@@ -5,6 +5,8 @@ import { setLoggedUser } from '../redux/reducers/loginSlice';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import { register } from '../services/apiHelper';
+import logoImage from '../images/logoEBirita.png';
+import './Register.css';
 
 function Register() {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -61,48 +63,57 @@ function Register() {
   };
 
   return (
-    <div>
-      <form onSubmit={ handleSubmit }>
-        <FormInput
-          label="name"
-          type="text"
-          name="name"
-          value={ name }
-          onChange={ handleChange }
-          testId="common_register__input-name"
-        />
+    <div className="div-envolve">
+      <div className="div-logo">
+        <img className="imgLogo" src={ logoImage } alt="logo ebirita" />
+      </div>
+      <div className="div-form">
+        <form onSubmit={ handleSubmit } className="formLogin">
+          <FormInput
+            label="name"
+            type="text"
+            name="name"
+            value={ name }
+            onChange={ handleChange }
+            testId="common_register__input-name"
+            classNameInput="inputLogin"
+          />
 
-        <FormInput
-          label="email"
-          type="email"
-          name="email"
-          value={ email }
-          onChange={ handleChange }
-          testId="common_register__input-email"
-        />
+          <FormInput
+            label="email"
+            type="email"
+            name="email"
+            value={ email }
+            onChange={ handleChange }
+            testId="common_register__input-email"
+            classNameInput="inputLogin"
+          />
 
-        <FormInput
-          label="password"
-          type="password"
-          name="password"
-          value={ password }
-          onChange={ handleChange }
-          testId="common_register__input-password"
-        />
+          <FormInput
+            label="password"
+            type="password"
+            name="password"
+            value={ password }
+            onChange={ handleChange }
+            testId="common_register__input-password"
+            classNameInput="inputLogin"
+          />
 
-        <Button
-          buttonText="CADASTRAR"
-          name="cadastrar"
-          type="submit"
-          disabled={ disabled }
-          testId="common_register__button-register"
-        />
-      </form>
-      {errorMessage && (
-        <p data-testid="common_register__element-invalid_register">
-          {errorMessage}
-        </p>
-      )}
+          <Button
+            buttonText="CADASTRAR"
+            name="cadastrar"
+            type="submit"
+            disabled={ disabled }
+            testId="common_register__button-register"
+            classNameButton="buttonLogin"
+          />
+        </form>
+        {errorMessage && (
+          <p data-testid="common_register__element-invalid_register">
+            {errorMessage}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function FormInput({ label, name, type, value, onChange, testId }) {
+function FormInput({
+  label,
+  name,
+  type,
+  value,
+  onChange,
+  testId,
+  classNameInput,
+}) {
   return (
     <label htmlFor={ name }>
       { label }
@@ -11,6 +19,7 @@ function FormInput({ label, name, type, value, onChange, testId }) {
         value={ value }
         onChange={ onChange }
         data-testid={ testId }
+        className={ classNameInput }
       />
     </label>
   );
@@ -18,6 +27,7 @@ function FormInput({ label, name, type, value, onChange, testId }) {
 
 FormInput.propTypes = {
   label: PropTypes.string.isRequired,
+  classNameInput: PropTypes.string.isRequired,
   name: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

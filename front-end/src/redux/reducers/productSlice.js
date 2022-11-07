@@ -4,6 +4,7 @@ const initialState = {
   products: [],
   orders: [],
   totalValue: 0,
+  sales: [],
 };
 
 const productSlice = createSlice({
@@ -43,11 +44,24 @@ const productSlice = createSlice({
     setTotalValue: (state, action) => {
       state.totalValue = action.payload;
     },
+    deleteOrder: (state, action) => {
+      state.orders = state.orders.filter((item) => item.idP !== action.payload);
+    },
+    setSales: (state, action) => {
+      state.sales = [...state.sales, action.payload];
+    },
   },
 });
 
 export const {
-  setProducts, addOrders, increment, decrement, setProductsQty, setTotalValue,
+  setProducts,
+  addOrders,
+  increment,
+  decrement,
+  setProductsQty,
+  setTotalValue,
+  deleteOrder,
+  setSales,
 } = productSlice.actions;
 
 export default productSlice.reducer;

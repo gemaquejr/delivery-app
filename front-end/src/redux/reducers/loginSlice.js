@@ -6,6 +6,7 @@ const initialState = {
     email: '',
     userToken: '',
     role: '',
+    id: '',
   },
 };
 

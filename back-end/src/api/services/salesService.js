@@ -36,7 +36,7 @@ const createSale = async (saleInfo) => {
   });
   });
 
-  return { status: 201, json: { message: 'funcionou' } };
+  return { status: 201, json: { saleId } };
 };
 
 const findSaleById = async (id) => {

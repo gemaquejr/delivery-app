@@ -48,11 +48,11 @@ function Login() {
     e.preventDefault();
     const response = await login({ email, password });
 
-    const { userToken: token, message, name, role } = response;
+    const { userToken: token, message, name, role, id } = response;
 
     if (message) return setErrorMessage(message);
-    dispatch(setLoggedUser({ email, token, name, role }));
-    const data = JSON.stringify({ name, role, token, email });
+    dispatch(setLoggedUser({ email, token, name, role, id }));
+    const data = JSON.stringify({ name, role, token, email, id });
     localStorage.setItem('user', data);
     switch (role) {
     case 'customer':

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteOrder, setTotalValue } from '../redux/reducers/productSlice';
@@ -6,8 +6,7 @@ import Button from './Button';
 
 function TableProducts({ page }) {
   const dispatch = useDispatch();
-  const [it, setIt] = useState(1);
-  const [price, setPrice] = useState();
+  const price = useSelector((state) => state.productSlice.totalValue);
 
   const arrayOfOrders = useSelector(
     (state) => state.productSlice.orders,
@@ -15,24 +14,11 @@ function TableProducts({ page }) {
 
   useEffect(() => {
     let totalPrice = 0;
-    let iterations = 0;
-    if (arrayOfOrders) {
-      arrayOfOrders.forEach((item) => {
-        totalPrice += item.priceP * item.quantidadeP;
-        iterations += 1;
-      });
-    }
-    console.log(iterations);
-    console.log(arrayOfOrders.length);
-    setPrice(totalPrice);
-    setIt(iterations);
-  }, [arrayOfOrders]);
-
-  useEffect(() => {
-    if (it === arrayOfOrders.length) {
-      dispatch(setTotalValue(price.toFixed(2).toString().replace('.', ',')));
-    }
-  }, [dispatch, it, arrayOfOrders, price]);
+    arrayOfOrders.forEach((item) => {
+      totalPrice += item.priceP * item.quantidadeP;
+    });
+    dispatch(setTotalValue(totalPrice.toFixed(2).toString().replace('.', ',')));
+  }, [dispatch, arrayOfOrders]);
 
   const handleRemove = (id) => {
     dispatch(deleteOrder(id));
@@ -109,15 +95,11 @@ function TableProducts({ page }) {
           }
         </tbody>
       </table>
-      <div>
-        {(it === arrayOfOrders.length && it !== 0) && (
-          <h2
-            data-testid={ `${page}__element-order-total-price` }
-          >
-            { `Total R$${price.toFixed(2).toString().replace('.', ',')}` }
-          </h2>
-        )}
-      </div>
+      <h2
+        data-testid={ `${page}__element-order-total-price` }
+      >
+        { `Total R$${price}` }
+      </h2>
     </div>
   );
 }

@@ -15,14 +15,19 @@ function CustomerOrdersDetails() {
   useEffect(() => {
     async function order() {
       const response = await getOrderDetails(id);
+
       const { products, sellerId } = response;
+
       const seller = await getUserById(sellerId);
       response.seller = seller;
+
       const magicNumber = 10;
       const date = response.saleDate.substring(0, magicNumber).split('-');
       const formattedDate = `${date[2]}/${date[1]}/${date[0]}`;
       response.saleDate = formattedDate;
+
       setOrderInfo(response);
+
       const productsList = [];
       products.forEach((product) => {
         const pd = {

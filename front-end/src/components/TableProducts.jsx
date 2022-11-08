@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteOrder, setTotalValue } from '../redux/reducers/productSlice';
@@ -6,19 +6,33 @@ import Button from './Button';
 
 function TableProducts({ page }) {
   const dispatch = useDispatch();
+  const [it, setIt] = useState(1);
+  const [price, setPrice] = useState();
 
   const arrayOfOrders = useSelector(
     (state) => state.productSlice.orders,
   );
 
-  let totalPrice = 0;
-  arrayOfOrders.forEach((item) => {
-    totalPrice += item.priceP * item.quantidadeP;
-  });
+  useEffect(() => {
+    let totalPrice = 0;
+    let iterations = 0;
+    if (arrayOfOrders) {
+      arrayOfOrders.forEach((item) => {
+        totalPrice += item.priceP * item.quantidadeP;
+        iterations += 1;
+      });
+    }
+    console.log(iterations);
+    console.log(arrayOfOrders.length);
+    setPrice(totalPrice);
+    setIt(iterations);
+  }, [arrayOfOrders]);
 
   useEffect(() => {
-    dispatch(setTotalValue(totalPrice.toFixed(2).toString().replace('.', ',')));
-  }, [dispatch, totalPrice]);
+    if (it === arrayOfOrders.length) {
+      dispatch(setTotalValue(price.toFixed(2).toString().replace('.', ',')));
+    }
+  }, [dispatch, it, arrayOfOrders, price]);
 
   const handleRemove = (id) => {
     dispatch(deleteOrder(id));
@@ -95,11 +109,15 @@ function TableProducts({ page }) {
           }
         </tbody>
       </table>
-      <h2
-        data-testid={ `${page}__element-order-total-price` }
-      >
-        { `Total R$${totalPrice.toFixed(2).toString().replace('.', ',')}` }
-      </h2>
+      <div>
+        {(it === arrayOfOrders.length && it !== 0) && (
+          <h2
+            data-testid={ `${page}__element-order-total-price` }
+          >
+            { `Total R$${price.toFixed(2).toString().replace('.', ',')}` }
+          </h2>
+        )}
+      </div>
     </div>
   );
 }

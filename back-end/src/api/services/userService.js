@@ -20,6 +20,6 @@ const findUserById = async (id) => {
   });
 
   return { status: 200, json: user };
-}
+};
 
 module.exports = { findAllSellers, findUserById };

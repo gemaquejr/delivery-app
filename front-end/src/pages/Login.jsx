@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { /* useSelector */ useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
@@ -32,6 +32,26 @@ function Login() {
       setDisabled(true);
     }
   };
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('user') || null);
+
+    if (data) {
+      switch (data.role) {
+      case 'customer':
+        navigate('/customer/products', { replace: true });
+        break;
+      case 'seller':
+        navigate('/seller/orders', { replace: true });
+        break;
+      case 'administrator':
+        navigate('/admin/manage', { replace: true });
+        break;
+      default:
+        break;
+      }
+    }
+  }, [navigate]);
 
   const handleChange = ({ target }) => {
     if (target.name === 'email') {

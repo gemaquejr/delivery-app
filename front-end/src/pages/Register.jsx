@@ -6,7 +6,6 @@ import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import { register } from '../services/apiHelper';
 import logoImage from '../images/logoEBirita.png';
-import './Register.css';
 
 function Register() {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

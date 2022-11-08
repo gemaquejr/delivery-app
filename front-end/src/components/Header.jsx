@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { setLoggedUser } from '../redux/reducers/loginSlice';
+import './Header.css';
 import Button from './Button';
 
 function Header() {
@@ -81,6 +82,7 @@ function Header() {
             type="button"
             testId="customer_products__element-navbar-link-logout"
             onClick={ handleLogout }
+            classNameButton="button-sair"
           />
         </div>
       </div>

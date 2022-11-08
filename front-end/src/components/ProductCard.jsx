@@ -5,6 +5,7 @@ import {
   addOrders, increment, decrement, setProductsQty } from '../redux/reducers/productSlice';
 import FormInput from './FormInput';
 import Button from './Button';
+import './ProductCard.css';
 
 function ProductCard({ id, name, price, urlImage }) {
   const INDEX_OF_FALSE_RETURN = -1;
@@ -79,28 +80,33 @@ function ProductCard({ id, name, price, urlImage }) {
       <h3 data-testid={ `customer_products__element-card-title-${id}` }>
         { name }
       </h3>
-      <Button
-        buttonText="-"
-        name="rm-item"
-        type="button"
-        testId={ `customer_products__button-card-rm-item-${id}` }
-        onClick={ handleDecrement }
-      />
-      <FormInput
-        type="number"
-        name={ id }
-        label=""
-        testId={ `customer_products__input-card-quantity-${id}` }
-        value={ productName.quantidadeP }
-        onChange={ handleChange }
-      />
-      <Button
-        buttonText="+"
-        name="add-item"
-        type="button"
-        onClick={ handleIncrement }
-        testId={ `customer_products__button-card-add-item-${id}` }
-      />
+      <div className="div-buttons">
+        <Button
+          buttonText="-"
+          name="rm-item"
+          type="button"
+          testId={ `customer_products__button-card-rm-item-${id}` }
+          onClick={ handleDecrement }
+          classNameButton="button-prod"
+        />
+        <FormInput
+          type="number"
+          name={ id }
+          label=""
+          testId={ `customer_products__input-card-quantity-${id}` }
+          value={ productName.quantidadeP }
+          onChange={ handleChange }
+          classNameInput="input-qt"
+        />
+        <Button
+          buttonText="+"
+          name="add-item"
+          type="button"
+          onClick={ handleIncrement }
+          testId={ `customer_products__button-card-add-item-${id}` }
+          classNameButton="button-prod"
+        />
+      </div>
     </div>
   );
 }

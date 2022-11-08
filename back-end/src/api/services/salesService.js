@@ -68,6 +68,6 @@ const getSalesByUser = async (id) => {
     },
   });
   return { status: 201, json: userSales };
-}
+};
 
 module.exports = { createSale, findSaleById, getAllSales, getSalesByUser };

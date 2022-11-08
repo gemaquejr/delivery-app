@@ -61,4 +61,13 @@ const getAllSales = async () => {
   return { status: 201, json: allSales };
 };
 
-module.exports = { createSale, findSaleById, getAllSales };
+const getSalesByUser = async (id) => {
+  const userSales = await sales.findAll({
+    where: {
+      id,
+    },
+  });
+  return { status: 201, json: userSales };
+}
+
+module.exports = { createSale, findSaleById, getAllSales, getSalesByUser };

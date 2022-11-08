@@ -2,39 +2,42 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import TableProducts from '../components/TableProducts';
-import { getOrderDetails, products } from '../services/apiHelper';
+import { getOrderDetails, getUserById } from '../services/apiHelper';
 import { orderDetails } from '../redux/reducers/productSlice';
 import OrderDetailsHeader from '../components/OrderDetailsHeader';
 import Header from '../components/Header';
 
 function CustomerOrdersDetails() {
   const { id } = useParams();
-  const [orderInfo, setOrderInfo] = useState({});
+  const [orderInfo, setOrderInfo] = useState({ seller: { name: '' } });
   const dispatch = useDispatch();
 
-  async function order(saleId) {
-    const response = await getOrderDetails(saleId);
-    const allProducts = await products();
-    const { productsList } = response;
-    console.log(response);
-    setOrderInfo(response);
-    const productsHere = [];
-    productsList.forEach((product) => {
-      const pdData = allProducts.find((item) => item.id === product.productId);
-      const pd = {
-        idP: product.productId,
-        nameP: pdData.name,
-        quantidadeP: product.quantity,
-        priceP: pdData.price,
-      };
-      productsHere.push(pd);
-    });
-    dispatch(orderDetails(productsHere));
-  }
-
   useEffect(() => {
-    order(id);
-  }, [id]);
+    async function order() {
+      const response = await getOrderDetails(id);
+      const { products, sellerId } = response;
+      const seller = await getUserById(sellerId);
+      response.seller = seller;
+      const magicNumber = 10;
+      const date = response.saleDate.substring(0, magicNumber).split('-');
+      const formattedDate = `${date[2]}/${date[1]}/${date[0]}`;
+      response.saleDate = formattedDate;
+      setOrderInfo(response);
+      const productsList = [];
+      products.forEach((product) => {
+        const pd = {
+          idP: product.id,
+          nameP: product.name,
+          quantidadeP: product.SalesProducts.quantity,
+          priceP: product.price,
+        };
+        productsList.push(pd);
+      });
+      dispatch(orderDetails(productsList));
+    }
+
+    order();
+  }, [dispatch, id]);
 
   return (
     <div>
@@ -45,7 +48,7 @@ function CustomerOrdersDetails() {
       <OrderDetailsHeader
         page="customer_order_details"
         orderId={ orderInfo.id }
-        sellerId={ orderInfo.sellerId }
+        sellerName={ orderInfo.seller.name }
         saleDate={ orderInfo.saleDate }
         status={ orderInfo.status }
       />

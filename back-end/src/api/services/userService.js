@@ -12,4 +12,14 @@ const findAllSellers = async () => {
   return response;
 };
 
-module.exports = { findAllSellers };
+const findUserById = async (id) => {
+  const user = await users.findOne({
+    where: {
+      id,
+    },
+  });
+
+  return { status: 200, json: user };
+}
+
+module.exports = { findAllSellers, findUserById };

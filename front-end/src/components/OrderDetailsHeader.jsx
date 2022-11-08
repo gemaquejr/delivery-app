@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 
-function OrderDetailsHeader({ page, orderId, sellerId, saleDate, status }) {
+function OrderDetailsHeader({ page, orderId, sellerName, saleDate, status }) {
   return (
     <div>
       <span
@@ -17,7 +17,7 @@ function OrderDetailsHeader({ page, orderId, sellerId, saleDate, status }) {
           `${page}__element-order-details-label-seller-name`
         }
       >
-        {`Vendido por: ${sellerId}`}
+        {`Vendido por: ${sellerName}`}
       </span>
       <span
         data-testid={
@@ -42,6 +42,7 @@ function OrderDetailsHeader({ page, orderId, sellerId, saleDate, status }) {
               name="Entregue"
               onClick={ () => console.log('marcou como entregue') }
               buttonText="MARCAR COMO ENTREGUE"
+              disabled
             />
           </div>)
           : (
@@ -57,10 +58,17 @@ function OrderDetailsHeader({ page, orderId, sellerId, saleDate, status }) {
 
 OrderDetailsHeader.propTypes = {
   page: PropTypes.string.isRequired,
-  orderId: PropTypes.number.isRequired,
-  sellerId: PropTypes.number.isRequired,
-  saleDate: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
+  orderId: PropTypes.number,
+  sellerName: PropTypes.string,
+  saleDate: PropTypes.string,
+  status: PropTypes.string,
+};
+
+OrderDetailsHeader.defaultProps = {
+  orderId: 0,
+  sellerName: '',
+  saleDate: '',
+  status: '',
 };
 
 export default OrderDetailsHeader;

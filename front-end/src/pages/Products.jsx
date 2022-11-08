@@ -40,16 +40,21 @@ function Products() {
       <div>
         <Header />
       </div>
-      <div className="valor-total" data-testid="customer_products__checkout-bottom-value">
-        <Button
-          type="button"
-          name="Carrinho"
-          onClick={ () => navigate('/customer/checkout', { replace: true }) }
-          testId="customer_products__button-cart"
-          buttonText={ `VALOR TOTAL: R$ ${handlePrice()}` }
-          disabled={ parseInt(handlePrice(), 10) === 0 }
-          classNameButton="button-total"
-        />
+      <div className="div-button-total">
+        <div
+          className="valor-total"
+          data-testid="customer_products__checkout-bottom-value"
+        >
+          <Button
+            type="button"
+            name="Carrinho"
+            onClick={ () => navigate('/customer/checkout', { replace: true }) }
+            testId="customer_products__button-cart"
+            buttonText={ `VALOR TOTAL: R$ ${handlePrice()}` }
+            disabled={ parseInt(handlePrice(), 10) === 0 }
+            classNameButton="button-total"
+          />
+        </div>
       </div>
       <div className="card-container">
         {

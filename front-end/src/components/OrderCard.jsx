@@ -24,7 +24,7 @@ function OrderCard({
           { orderDate }
         </p>
         <p data-testid={ `${orderRole}_orders__element-card-price-${orderId}` }>
-          { orderTotalValue }
+          { orderTotalValue.replace('.', ',') }
         </p>
         { orderRole === 'seller'
         && (

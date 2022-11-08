@@ -1,0 +1,24 @@
+.button-total {
+  align-items: center;
+  background-color: #f4f7f3;
+  border: rgb(80, 78, 78) 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px gray;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  font-size: 13px;
+  height: 60px;
+  justify-content: center;
+  margin-bottom: 5%;
+  padding: 10px;
+  width: 300px;
+}
+
+.card-container {
+  background-color: #f56709;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+}

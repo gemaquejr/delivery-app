@@ -5,6 +5,8 @@ import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import { setLoggedUser } from '../redux/reducers/loginSlice';
 import { login } from '../services/apiHelper';
+import logoImage from '../images/logoEBirita.png';
+import './Login.css';
 
 function Login() {
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -91,44 +93,53 @@ function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={ handleSubmit }>
-        <FormInput
-          label="login"
-          type="email"
-          name="email"
-          value={ email }
-          onChange={ handleChange }
-          testId="common_login__input-email"
-        />
+    <div className="div-envolve">
+      <div className="div-logo">
+        <img className="imgLogo" src={ logoImage } alt="logo ebirita" />
+      </div>
+      <div className="div-form">
+        <form onSubmit={ handleSubmit } className="formLogin">
+          <FormInput
+            label="login"
+            type="email"
+            name="email"
+            value={ email }
+            onChange={ handleChange }
+            testId="common_login__input-email"
+            classNameInput="inputLogin"
+          />
 
-        <FormInput
-          label="password"
-          type="password"
-          name="password"
-          value={ password }
-          onChange={ handleChange }
-          testId="common_login__input-password"
-        />
+          <FormInput
+            label="password"
+            type="password"
+            name="password"
+            value={ password }
+            onChange={ handleChange }
+            testId="common_login__input-password"
+            classNameInput="inputLogin"
+          />
 
-        <Button
-          buttonText="LOGIN"
-          name="login"
-          type="submit"
-          disabled={ disabled }
-          testId="common_login__button-login"
-        />
+          <Button
+            buttonText="LOGIN"
+            name="login"
+            type="submit"
+            disabled={ disabled }
+            testId="common_login__button-login"
+            classNameButton="buttonLogin"
+          />
 
-        <Button
-          buttonText="Ainda não tenho conta"
-          name="register"
-          type="button"
-          testId="common_login__button-register"
-          onClick={ () => navigate('/register', { replace: true }) }
-        />
-      </form>
+          <Button
+            buttonText="Ainda não tenho conta"
+            name="register"
+            type="button"
+            testId="common_login__button-register"
+            onClick={ () => navigate('/register', { replace: true }) }
+            classNameButton="buttonLogin"
+          />
+        </form>
+      </div>
       {errorMessage && (
-        <p data-testid="common_login__element-invalid-email">
+        <p data-testid="common_login__element-invalid-email" className="error-message">
           {errorMessage}
         </p>
       )}

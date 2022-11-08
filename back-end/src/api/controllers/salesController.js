@@ -27,6 +27,6 @@ const findSalesByUser = async (req, res) => {
   const response = await salesService.getSalesByUser(id);
 
   return res.status(response.status).json(response.json);
-}
+};
 
 module.exports = { newSale, findSale, findAllSales, findSalesByUser };

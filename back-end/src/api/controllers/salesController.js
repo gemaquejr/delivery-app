@@ -22,4 +22,11 @@ const findAllSales = async (_req, res) => {
   return res.status(response.status).json(response.json);
 };
 
-module.exports = { newSale, findSale, findAllSales };
+const findSalesByUser = async (req, res) => {
+  const { id } = req.params;
+  const response = await salesService.getSalesByUser(id);
+
+  return res.status(response.status).json(response.json);
+};
+
+module.exports = { newSale, findSale, findAllSales, findSalesByUser };

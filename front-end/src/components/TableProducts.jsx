@@ -6,19 +6,19 @@ import Button from './Button';
 
 function TableProducts({ page }) {
   const dispatch = useDispatch();
+  const price = useSelector((state) => state.productSlice.totalValue);
 
   const arrayOfOrders = useSelector(
     (state) => state.productSlice.orders,
   );
 
-  let totalPrice = 0;
-  arrayOfOrders.forEach((item) => {
-    totalPrice += item.priceP * item.quantidadeP;
-  });
-
   useEffect(() => {
+    let totalPrice = 0;
+    arrayOfOrders.forEach((item) => {
+      totalPrice += item.priceP * item.quantidadeP;
+    });
     dispatch(setTotalValue(totalPrice.toFixed(2).toString().replace('.', ',')));
-  }, [dispatch, totalPrice]);
+  }, [dispatch, arrayOfOrders]);
 
   const handleRemove = (id) => {
     dispatch(deleteOrder(id));
@@ -98,7 +98,7 @@ function TableProducts({ page }) {
       <h2
         data-testid={ `${page}__element-order-total-price` }
       >
-        { `Total R$${totalPrice.toFixed(2).toString().replace('.', ',')}` }
+        { `Total R$${price}` }
       </h2>
     </div>
   );

@@ -1,9 +1,17 @@
 const userService = require('../services/userService');
 
-const findAllSellers = async (req, res) => {
+const findAllSellers = async (_req, res) => {
   const response = await userService.findAllSellers();
   
   return res.status(response.status).json(response.json);
 };
 
-module.exports = { findAllSellers };
+const findUserById = async (req, res) => {
+  const { id } = req.params;
+
+  const response = await userService.findUserById(id);
+
+  return res.status(response.status).json(response.json);
+};
+
+module.exports = { findAllSellers, findUserById };

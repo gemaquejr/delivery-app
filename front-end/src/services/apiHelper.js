@@ -66,6 +66,17 @@ const getOrderDetails = async (id) => {
   return data;
 };
 
+const getUserById = async (id) => {
+  try {
+    const { data } = await instance.get(`/user/${id}`);
+    return data;
+  } catch (err) {
+    return {
+      message: err.response,
+    };
+  }
+};
+
 export {
   login,
   register,
@@ -74,4 +85,5 @@ export {
   newSale,
   getOrderDetails,
   getAllSales,
+  getUserById,
 };

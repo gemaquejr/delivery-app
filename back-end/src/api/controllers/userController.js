@@ -12,6 +12,6 @@ const findUserById = async (req, res) => {
   const response = await userService.findUserById(id);
 
   return res.status(response.status).json(response.json);
-}
+};
 
 module.exports = { findAllSellers, findUserById };

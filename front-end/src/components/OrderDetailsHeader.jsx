@@ -12,13 +12,15 @@ function OrderDetailsHeader({ page, orderId, sellerName, saleDate, status }) {
       >
         {`PEDIDO ${orderId}`}
       </span>
-      <span
-        data-testid={
-          `${page}__element-order-details-label-seller-name`
-        }
-      >
-        {`Vendido por: ${sellerName}`}
-      </span>
+      {page === 'customer_order_details' && (
+        <span
+          data-testid={
+            `${page}__element-order-details-label-seller-name`
+          }
+        >
+          {`Vendido por: ${sellerName}`}
+        </span>
+      )}
       <span
         data-testid={
           `${page}__element-order-details-label-order-date`
@@ -47,8 +49,22 @@ function OrderDetailsHeader({ page, orderId, sellerName, saleDate, status }) {
           </div>)
           : (
             <div>
-              <Button />
-              <Button />
+              <Button
+                testId="seller_order_details__button-preparing-check"
+                type="button"
+                name="Preparar"
+                onClick={ () => console.log('marcou como preparando') }
+                buttonText="PREPARAR PEDIDO"
+                // disabled
+              />
+              <Button
+                testId="seller_order_details__button-dispatch-check"
+                type="button"
+                name="Entregue"
+                onClick={ () => console.log('marcou como saiu') }
+                buttonText="SAIU PARA ENTREGA"
+                disabled
+              />
             </div>
           )}
       </span>

@@ -36,7 +36,7 @@ function Products() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="div-envolve-page">
       <div>
         <Header />
       </div>
@@ -50,7 +50,7 @@ function Products() {
             name="Carrinho"
             onClick={ () => navigate('/customer/checkout', { replace: true }) }
             testId="customer_products__button-cart"
-            buttonText={ `VALOR TOTAL: R$ ${handlePrice()}` }
+            buttonText={ `Valor Total: R$ ${handlePrice()}` }
             disabled={ parseInt(handlePrice(), 10) === 0 }
             classNameButton="button-total"
           />

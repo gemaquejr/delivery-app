@@ -69,15 +69,24 @@ function ProductCard({ id, name, price, urlImage }) {
 
   return (
     <div className="product-card">
-      <p data-testid={ `customer_products__element-card-price-${id}` }>
-        { `R$${price.replace('.', ',')}` }
-      </p>
+      <div className="div-price">
+        <p
+          data-testid={ `customer_products__element-card-price-${id}` }
+          className="price"
+        >
+          { `R$${price.replace('.', ',')}` }
+        </p>
+      </div>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
         alt={ name }
+        className="product-image"
       />
-      <h3 data-testid={ `customer_products__element-card-title-${id}` }>
+      <h3
+        data-testid={ `customer_products__element-card-title-${id}` }
+        className="product-name"
+      >
         { name }
       </h3>
       <div className="div-buttons">

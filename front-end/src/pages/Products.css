@@ -1,22 +1,23 @@
 .button-total {
   align-items: center;
-  background-color: #f4f7f3;
+  background-color: rgb(224, 222, 222);
   border: rgb(80, 78, 78) 5px;
   border-radius: 5px;
   box-shadow: 3px 3px 5px gray;
   color: black;
   cursor: pointer;
   display: flex;
-  font-size: 20px;
-  height: 60px;
+  font-family: Verdana , Geneva , Tahoma , sans-serif;
+  font-size: 17px;
+  height: 40px;
   justify-content: center;
   margin-bottom: 5%;
   padding: 10px;
-  width: 300px;
+  width: 200px;
 }
 
 .card-container {
-  background-color: #f56709;
+  background-color: #f4f7f3;
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -25,9 +26,14 @@
 }
 
 .div-button-total {
+  background-color: #f4f7f3;
   display: flex;
-  margin-left: -370px;
-  margin-bottom: 10px;
-  margin-top: 20px;
   justify-content: center;
+  margin-bottom: 10px;
+  margin-left: -370px;
+  margin-top: 20px;
+}
+
+.div-envolve-page {
+  background-color: #f4f7f3;
 }

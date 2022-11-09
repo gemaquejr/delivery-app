@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import Header from '../components/Header';
 import TableOrder from '../components/TableOrder';
 import TableProducts from '../components/TableProducts';
+import './Checkout.css';
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -48,18 +49,22 @@ function Checkout() {
   return (
     <div>
       <Header />
-      <h2>Finalizar pedido</h2>
       <TableProducts page="customer_checkout" />
-      <h2>Detalhes e endereço de entrega</h2>
+      <div className="details">
+        <h2 className="details-h2">Detalhes e endereço de entrega</h2>
+      </div>
       <div>
         <TableOrder />
-        <Button
-          type="button"
-          name="finalizar-pedido"
-          onClick={ handleCheckout }
-          testId="customer_checkout__button-submit-order"
-          buttonText="Finalizar pedido"
-        />
+        <div className="div-button-finalizar">
+          <Button
+            type="button"
+            name="finalizar-pedido"
+            onClick={ handleCheckout }
+            testId="customer_checkout__button-submit-order"
+            buttonText="Finalizar pedido"
+            classNameButton="button-finalizar"
+          />
+        </div>
       </div>
     </div>
   );

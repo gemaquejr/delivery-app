@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteOrder, setTotalValue } from '../redux/reducers/productSlice';
 import Button from './Button';
+import './TableProducts.css';
 
 function TableProducts({ page }) {
   const dispatch = useDispatch();
@@ -26,12 +27,12 @@ function TableProducts({ page }) {
 
   return (
     <div>
-      <table>
+      <table id="table-product">
         <thead>
           <tr>
             <th>Item</th>
             <th>Descrição</th>
-            <th>Quantidade</th>
+            <th>Qtde</th>
             <th>Valor Unitário</th>
             <th>Sub-Total</th>
             {page === 'customer_checkout' && (<th>Remover</th>)}
@@ -56,6 +57,7 @@ function TableProducts({ page }) {
                   {item.nameP}
                 </td>
                 <td
+                  width="2"
                   data-testid={
                     `${page}__element-order-table-quantity-${index}`
                   }
@@ -88,6 +90,7 @@ function TableProducts({ page }) {
                         name="Remover"
                         onClick={ () => handleRemove(item.idP) }
                         testId={ `${page}__element-order-table-remove-${index}` }
+                        classNameButton="button-remove"
                       />
                     </td>)}
               </tr>
@@ -95,11 +98,14 @@ function TableProducts({ page }) {
           }
         </tbody>
       </table>
-      <h2
-        data-testid={ `${page}__element-order-total-price` }
-      >
-        { `Total R$${price}` }
-      </h2>
+      <div className="div-total-pedido">
+        <h2
+          className="total-pedido"
+          data-testid={ `${page}__element-order-total-price` }
+        >
+          { `Total R$ ${price}` }
+        </h2>
+      </div>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { findAllSellers } from '../services/apiHelper';
 import FormInput from './FormInput';
 import { setUserAddress, setUserAddressNumber } from '../redux/reducers/userSlice';
+import './TableOrder.css';
 
 function TableOrder() {
   const dispatch = useDispatch();
@@ -37,24 +38,26 @@ function TableOrder() {
   return (
     <div>
       <label htmlFor="seller-select">
-        <p>P. Vendedora Responsável</p>
-        <select
-          name="seller"
-          id="seller-select"
-          data-testid="customer_checkout__select-seller"
-          value={ sellerIdValue }
-          onChange={ handleChange }
-        >
-          { sellers.map((seller) => (
-            <option
-              key={ seller.id }
-              id={ seller.id }
-              name={ seller.name }
-              value={ seller.id }
-            >
-              { seller.name }
-            </option>)) }
-        </select>
+        <p className="p-vendedora">P. Vendedora Responsável</p>
+        <div className="div-select">
+          <select
+            name="seller"
+            id="seller-select"
+            data-testid="customer_checkout__select-seller"
+            value={ sellerIdValue }
+            onChange={ handleChange }
+          >
+            { sellers.map((seller) => (
+              <option
+                key={ seller.id }
+                id={ seller.id }
+                name={ seller.name }
+                value={ seller.id }
+              >
+                { seller.name }
+              </option>)) }
+          </select>
+        </div>
       </label>
 
       <div>
@@ -65,6 +68,7 @@ function TableOrder() {
           value={ address }
           onChange={ handleChange }
           testId="customer_checkout__input-address"
+          classNameInput="input-pedido-addres"
         />
       </div>
       <div>
@@ -75,6 +79,7 @@ function TableOrder() {
           value={ addressNumber }
           onChange={ handleChange }
           testId="customer_checkout__input-address-number"
+          classNameInput="input-pedido-number"
         />
       </div>
     </div>

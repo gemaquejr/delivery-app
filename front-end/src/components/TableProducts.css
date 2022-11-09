@@ -1,0 +1,70 @@
+#table-product {
+  border-collapse: collapse;
+  font-family: Arial , Helvetica , sans-serif;
+  margin-bottom: 30px;
+  margin-top: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+#table-product td, #table-product th {
+  border: 1px solid rgb(206, 203, 203);
+  font-size: 14px;
+  padding: 5px;
+  text-align: center;
+}
+
+#table-product tr:nth-child( even ) {
+  background-color: #f2f2f2;
+}
+
+#table-product tr:hover {
+  background-color: #ddd;
+}
+
+#table-product th {
+  background-color: #f56709;
+  color: white;
+  font-size: 16px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  text-align: center;
+}
+
+.button-remove {
+  align-items: center;
+  background-color: #f4f7f3;
+  border: rgb(80, 78, 78) 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px gray;
+  cursor: pointer;
+  display: flex;
+  font-size: 13px;
+  height: 20px;
+  justify-content: center;
+  margin-bottom: 5%;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 10px;
+  width: 60px;
+}
+
+.total-pedido {
+  font-size: 22px;
+  text-align: center;
+}
+
+.div-total-pedido {
+  align-items: center;
+  background-color: rgb(224, 222, 222);
+  border: rgb(80, 78, 78) 5px;
+  border-radius: 1px;
+  display: flex;
+  font-size: 13px;
+  height: 35px;
+  justify-content: center;
+  margin-bottom: 8%;
+  margin-left: 30px;
+  padding: 10px;
+  width: 300px;
+}

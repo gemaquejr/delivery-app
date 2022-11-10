@@ -1,0 +1,70 @@
+.input-login {
+  align-items: center;
+  background-color: #f4f7f3;
+  border: rgb(80, 78, 78) 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px gray;
+  display: flex;
+  font-size: 18px;
+  height: 35px;
+  justify-content: flex-end;
+  margin-bottom: 3%;
+  margin-left: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 370px;
+}
+
+.input-senha-man {
+  align-items: center;
+  background-color: #f4f7f3;
+  border: rgb(80, 78, 78) 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px gray;
+  display: flex;
+  font-size: 18px;
+  height: 35px;
+  justify-content: flex-end;
+  margin-bottom: 6%;
+  margin-left: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 220px;
+}
+
+label {
+  margin-left: 10px;
+}
+
+.button-cadastrar {
+  align-items: center;
+  background-color: #f4f7f3;
+  border: rgb(80, 78, 78) 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px gray;
+  cursor: pointer;
+  display: flex;
+  font-size: 20px;
+  height: 50px;
+  justify-content: center;
+  margin-bottom: 5%;
+  padding: 10px;
+  width: 300px;
+}
+
+.div-button-cadastrar {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.tipo-select select {
+  font-size: 16px;
+  height: 25px;
+  margin-bottom: 8px;
+  margin-left: 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px gray;
+  text-align: center;
+  width: 140px;
+}

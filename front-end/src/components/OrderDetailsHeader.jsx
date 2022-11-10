@@ -54,13 +54,14 @@ function OrderDetailsHeader({ page, orderId, sellerName, saleDate, status }) {
             />
           </div>)
           : (
-            <div>
+            <div className="div-button-status">
               <Button
                 testId="seller_order_details__button-preparing-check"
                 type="button"
                 name="Preparar"
                 onClick={ () => console.log('marcou como preparando') }
                 buttonText="PREPARAR PEDIDO"
+                classNameButton="button-marcar"
                 // disabled
               />
               <Button
@@ -70,6 +71,7 @@ function OrderDetailsHeader({ page, orderId, sellerName, saleDate, status }) {
                 onClick={ () => console.log('marcou como saiu') }
                 buttonText="SAIU PARA ENTREGA"
                 disabled
+                classNameButton="button-marcar"
               />
             </div>
           )}

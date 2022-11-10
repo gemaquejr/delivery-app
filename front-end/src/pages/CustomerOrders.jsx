@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { getAllSales } from '../services/apiHelper';
 import Header from '../components/Header';
 import OrderCard from '../components/OrderCard';
+import './CustomerOrders.css';
 
 function CustomerOrders() {
   const { role, id } = useSelector((state) => state.loginSlice.loggedUser);

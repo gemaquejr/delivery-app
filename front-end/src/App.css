@@ -54,21 +54,14 @@ a:link {
   margin-left: 50%;
 }
 
-.order-container {
+/* .order-container {
+  background-color: #f4f7f3;
   border: 1px solid red;
   display: flex;
-  height: 750px;
+  height: 700px;
   margin-top: 20px;
-}
-
-.order-card {
-  border: 1px solid green;
-  display: flex;
-  flex-direction: column;
-  height: 180px;
-  margin: 20px;
-  width: 200px;
-}
+  width: 400px;
+} */
 
 /*
 .App {

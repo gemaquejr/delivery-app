@@ -1,19 +1,23 @@
 import React from 'react';
 import Header from '../components/Header';
 import NewUserForm from '../components/NewUserForm';
+import logoImage from '../images/logoEBirita.png';
+import './Manage.css';
 
 function Manage() {
   return (
     <div>
       <Header />
-      <h2>Página de admin manage - requisito bônus- teste</h2>
+      <div className="div-logo">
+        <img className="imgLogo" src={ logoImage } alt="logo ebirita" />
+      </div>
       <p data-testid="admin_manage__element-invalid-register" />
       <div>
-        Cadastrar novo usuário
+        <h2 className="cadastrar-new">Cadastrar novo usuário</h2>
         <NewUserForm />
       </div>
       <div>
-        Lista de usuários
+        <h2 className="cadastrar-new-user"> Lista de usuários</h2>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './OrderCard.css';
 
 function OrderCard({
   orderId,
@@ -14,23 +15,33 @@ function OrderCard({
       <Link
         to={ `/${orderRole}/orders/${orderId}` }
       >
-        <p data-testid={ `${orderRole}_orders__element-order-id-${orderId}` }>
-          { `pedido ${orderId}` }
-        </p>
-        <h3 data-testid={ `${orderRole}_orders__element-delivery-status-${orderId}` }>
-          { orderStatus }
-        </h3>
-        <p data-testid={ `${orderRole}_orders__element-order-date-${orderId}` }>
-          { orderDate }
-        </p>
-        <p data-testid={ `${orderRole}_orders__element-card-price-${orderId}` }>
-          { orderTotalValue.replace('.', ',') }
-        </p>
+        <div className="div-pedido-number">
+          <p data-testid={ `${orderRole}_orders__element-order-id-${orderId}` }>
+            { `pedido ${orderId}` }
+          </p>
+        </div>
+        <div className="div-status-order">
+          <h3 data-testid={ `${orderRole}_orders__element-delivery-status-${orderId}` }>
+            { orderStatus }
+          </h3>
+        </div>
+        <div className="div-order-date">
+          <p data-testid={ `${orderRole}_orders__element-order-date-${orderId}` }>
+            { orderDate }
+          </p>
+        </div>
+        <div className="div-price-order">
+          <p data-testid={ `${orderRole}_orders__element-card-price-${orderId}` }>
+            { orderTotalValue.replace('.', ',') }
+          </p>
+        </div>
         { orderRole === 'seller'
         && (
-          <p data-testid={ `${orderRole}_orders__element-card-address-${orderId}` }>
-            { orderAddress }
-          </p>
+          <div className="div-order-address">
+            <p data-testid={ `${orderRole}_orders__element-card-address-${orderId}` }>
+              { orderAddress }
+            </p>
+          </div>
         )}
       </Link>
     </div>

@@ -47,8 +47,8 @@ function SellerOrdersDetails() {
   return (
     <div>
       <Header />
-      <h2>
-        Detalhe do Pedido
+      <h2 className="h2-details">
+        Detalhes do Pedido
       </h2>
       <OrderDetailsHeader
         page="seller_order_details"

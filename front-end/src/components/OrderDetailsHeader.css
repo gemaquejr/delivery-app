@@ -1,0 +1,47 @@
+.class-pedido {
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.class-pedido-status {
+  font-style: italic;
+  font-size: 18px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.class-pedido-vend-date {
+  font-size: 18px;
+  font-weight: lighter;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.button-marcar {
+  align-items: center;
+  background-color: #f4f7f3;
+  border: rgb(80, 78, 78) 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px gray;
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  height: 32px;
+  justify-content: center;
+  margin-bottom: 5%;
+  padding: 10px;
+  width: 250px;
+}
+
+.div-button-marcar {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}

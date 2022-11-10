@@ -1,43 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
+import './OrderDetailsHeader.css';
 
 function OrderDetailsHeader({ page, orderId, sellerName, saleDate, status }) {
   return (
     <div>
-      <span
+      <div
+        className="class-pedido"
         data-testid={
           `${page}__element-order-details-label-order-id`
         }
       >
         {`PEDIDO ${orderId}`}
-      </span>
+      </div>
       {page === 'customer_order_details' && (
-        <span
+        <div
+          className="class-pedido-vend-date"
           data-testid={
             `${page}__element-order-details-label-seller-name`
           }
         >
-          {`Vendido por: ${sellerName}`}
-        </span>
+          {` Vendido por: ${sellerName}`}
+        </div>
       )}
-      <span
+      <div
+        className="class-pedido-vend-date"
         data-testid={
           `${page}__element-order-details-label-order-date`
         }
       >
         {saleDate}
-      </span>
-      <span
+      </div>
+      <div
+        className="class-pedido-status"
         data-testid={
           `${page}__element-order-details-label-delivery-status`
         }
       >
         {status}
-      </span>
+      </div>
       <span>
         {page === 'customer_order_details' ? (
-          <div>
+          <div className="div-button-marcar">
             <Button
               testId="customer_order_details__button-delivery-check"
               type="button"
@@ -45,6 +50,7 @@ function OrderDetailsHeader({ page, orderId, sellerName, saleDate, status }) {
               onClick={ () => console.log('marcou como entregue') }
               buttonText="MARCAR COMO ENTREGUE"
               disabled
+              classNameButton="button-marcar"
             />
           </div>)
           : (

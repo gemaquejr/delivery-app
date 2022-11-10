@@ -6,6 +6,7 @@ import { getOrderDetails, getUserById } from '../services/apiHelper';
 import { orderDetails } from '../redux/reducers/productSlice';
 import OrderDetailsHeader from '../components/OrderDetailsHeader';
 import Header from '../components/Header';
+import './CustomerOrdersDetails.css';
 
 function CustomerOrdersDetails() {
   const { id } = useParams();
@@ -47,8 +48,8 @@ function CustomerOrdersDetails() {
   return (
     <div>
       <Header />
-      <h2>
-        Detalhe do Pedido
+      <h2 className="h2-details">
+        Detalhes do Pedido
       </h2>
       <OrderDetailsHeader
         page="customer_order_details"

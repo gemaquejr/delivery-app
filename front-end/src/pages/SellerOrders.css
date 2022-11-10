@@ -1,0 +1,7 @@
+.order-container-seller {
+  background-color: #f6dab6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}

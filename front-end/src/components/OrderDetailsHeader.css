@@ -7,8 +7,8 @@
 }
 
 .class-pedido-status {
-  font-style: italic;
   font-size: 18px;
+  font-style: italic;
   margin-bottom: 10px;
   margin-left: 5px;
   margin-top: 10px;
@@ -42,6 +42,14 @@
 
 .div-button-marcar {
   display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.div-button-status {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-top: 30px;
 }

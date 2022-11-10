@@ -1,0 +1,44 @@
+.order-card {
+  background-color: #f4f7f3;
+  border: 2px solid rgb(205, 201, 201);
+  border-radius: 4px;
+  box-shadow: 3px 3px 5px gray;
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  margin: 5%;
+  padding-top: 30px;
+  width: 40%;
+}
+
+p {
+  color: black;
+}
+
+h3 {
+  color: black;
+}
+
+.div-pedido-number {
+  font-style: italic;
+  margin-bottom: 5px;
+  margin-top: -15px;
+  text-decoration: underline;
+}
+
+.div-status-order {
+  margin-bottom: 12px;
+}
+
+.div-order-date {
+  font-weight: lighter;
+  margin-bottom: 18px;
+}
+
+.div-price-order {
+  margin-bottom: 18px;
+}
+
+.div-order-address {
+  margin-bottom: 19px;
+}

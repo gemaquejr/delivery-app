@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { getAllSales } from '../services/apiHelper';
 import Header from '../components/Header';
 import OrderCard from '../components/OrderCard';
+import './SellerOrders.css';
 
 function SellerOrders() {
   const { role, id } = useSelector((state) => state.loginSlice.loggedUser);
@@ -21,7 +22,7 @@ function SellerOrders() {
   return (
     <div>
       <Header />
-      <div className="order-container">
+      <div className="order-container-seller">
         {
           arrayOfSales.map((item) => (
             <OrderCard
